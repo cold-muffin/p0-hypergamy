@@ -1,5 +1,3 @@
-INITIAL DD REVIEW:
-
 Summary Design Doc Feedback:
 
 Reviewed by Strawberry Shortcake
