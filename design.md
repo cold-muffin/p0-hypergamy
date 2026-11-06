@@ -120,10 +120,10 @@ flowchart TD
     NewUserD-->|true|NewUserT(Redirect, show error message on the page)-->NewUser
     NewUserD-->|false|NewUserF(Add account info to DB)-->NewUserF2(Add user to session)-->Home
 
-    Home-->|pressed Profile?|Profile[blog_self.html]
-    Profile-->|chose to edit a post?|Edit[blog_edit.html]
-    Edit-->|pressed save and exit?|Profile
-    Profile-->|pressed home?|Home
+    Home-->|pressed Profile?|z(Redirect to blog_view, but with your own id as the page you are viewing)
+    z-->Stranger
+    Stranger-->|"pressed edit? (edit button does not appear unless you made the post)"|Edit[blog_edit.html]
+    Edit-->|pressed save and exit?|Stranger
 
     Home-->|Searched for a username?|Search[search.html]
     Search-->|pressed home?|Home
