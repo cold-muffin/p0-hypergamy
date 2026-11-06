@@ -92,6 +92,20 @@ Each member must own meaningful deliverables.
 # Component map
 
 {Insert your mermaid(or equivalent)-generated diagram here}
+```
+Website Interface
+   ↕
+Flask Server (app.py)
+   ↕
+Backend
+   ├── Authentication (auth.py)
+   ├── Page Management (blog_view.py)
+   └── Search Engine (search.py)
+   ↕
+Database Management (SQLite3 queries)
+   ↕
+Database
+```
 
 # Site map
 
