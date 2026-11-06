@@ -1,3 +1,6 @@
+marcosL -- 2026-11-6 12:37
+	Worked on new Design Doc yesterday in class. I frogot to add this log yesterday :(
+	Also efrat worked on it too yesterday in class.
 Summary Design Doc Feedback:
 
 Reviewed by Strawberry Shortcake
