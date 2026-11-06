@@ -1,8 +1,8 @@
 # System Blueprint (_a.k.a._ "Design Doc")
 
-## TNPG: 
-## project: 
-## Target ship date: {2026-06-xx}
+## TNPG: Hypergamy
+## project: WeBlog
+## Target ship date: {2026-11-20}
 
 ---
 
@@ -10,27 +10,27 @@
 
 
 | Name | Email | Primary Role | Secondary Role |
-|---|---|---|---|
-| | | | |
-| | | | |
-| | | | |
-| | | | |
+| Leon Wong | leonw17@nycstudents.net |---|---|
+| Marcos Lehman | marcosl30@nycstudents.net |---|---|
+| Wenjie Ma | wenjiem@nycstudents.net |---|---|
+| Efrat Hossain | efrath3@nycstudents.net |---|---|
 
 ---
 
 
 # Summary
-{Keep it tight. Concise. 1 sentence. Really need more? 3 max.}
+Super awesome blog hosting and sharing site, where you can update your own blog and see blogs of other users.
 
 ## Problem Being Solved
-
+Have you ever wanted to have blog posts 'n' stuff, but don't want to pay ten thousands of $$$ to the tech overlords to get it? Well now there is one, for free! (we're not the ones paying for it lol)
 
 ## Target Users
 
 Who will use this system?
 
-- ____________________________________
-- ____________________________________
+- People who want blog posts
+- People who want to look at them
+- ~~Sam Altman's web crawlers~~
 
 
 ## Why This Project Matters
