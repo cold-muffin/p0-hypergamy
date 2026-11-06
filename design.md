@@ -34,7 +34,7 @@ Who will use this system?
 
 
 ## Why This Project Matters
-
+If we make it, we get good experience for teamworking and making a project. ~~also we get a good grade in the class~~
 
 ---
 
@@ -42,12 +42,13 @@ Who will use this system?
 
 ## Core Features (Required for Final Submission)
 Features that **must** be completed:
-1. 
-1. 
-1. 
+1. Login/logout/storing info on accounts in databases
+1. Seeing the blog posts of a specific user
+1. A way to edit your blog posts.
+1. Seeing all your unpublished / published blog posts, and being able to publish/unpublish them.
 
 ## Stretch Features (Only if MVP is Complete)
-1. 
+1. A main feed that shows blog posts from multiple users (these are just the most recently published ones)
 1. 
 1. 
 
