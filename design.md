@@ -82,10 +82,10 @@ Each member must own meaningful deliverables.
 
 | Team Member | Primary Ownership | Secondary Ownership | Specific Deliverables |
 |---|---|---|---|
-| | | | |
-| | | | |
-| | | | |
-| | | | |
+| Marcos | Databases | Backend | Login System, Storing Blog Posts |
+| Wenjie | Webpage Design | Backend | Create webpages design |
+| Leon | Webpage Design | Databases | Create webpages design |
+| Efrat | Backend | Databases | Routing routes |
 
 ---
 
