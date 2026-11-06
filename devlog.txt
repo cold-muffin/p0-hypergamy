@@ -1,3 +1,17 @@
 marcosL -- 2026-11-6 12:37
 	Worked on new Design Doc yesterday in class. I frogot to add this log yesterday :(
 	Also efrat worked on it too yesterday in class.
+Summary Design Doc Feedback:
+
+Reviewed by Strawberry Shortcake
+
+- Routes make sense
+- Routes are thoroughly explained through each page.
+- uuid is unique.
+
+Reviewed by twelveyez
+
+- No Fuzzy Search but we can try
+- Files that we had are not technically servers.
+- Instructions are a bit vague.
+- Doesn't really give helpful tips for our design doc (not constructive criticism, more of just insulting and misguided opinions)
