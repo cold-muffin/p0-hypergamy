@@ -91,7 +91,6 @@ Each member must own meaningful deliverables.
 
 # Component map
 
-{Insert your mermaid(or equivalent)-generated diagram here}
 ``` mermaid
 flowchart TD
     A(Website Interface)<-->B("Flask server (app.py)")
@@ -108,17 +107,28 @@ end
 
 # Site map
 
-{Insert your mermaid(or equivalent)-generated diagram here}
-eg...
-```
-Landing Page
-   ↓
-Login / Register
-   ↓
-Dashboard
-   ├── Feature A
-   ├── Feature B
-   └── Profile
+``` mermaid
+flowchart TD
+    Start[START]-->Home[home.html]
+    Home-->|pressed login?|Login[login.html]
+    Login-->LoginD{Correct credentials?}
+    LoginD-->|true|LoginT(Add user to session)-->Home
+    LoginD-->|false|LoginF(Redirect, show error message on the page)-->Login
+
+    Home-->|pressed sign up?|NewUser[new_user.html]
+    NewUser-->NewUserD{Username taken?}
+    NewUserD-->|true|NewUserT(Redirect, show error message on the page)-->NewUser
+    NewUserD-->|false|NewUserF(Add account info to DB)-->NewUserF2(Add user to session)-->Home
+
+    Home-->|pressed Profile?|Profile[blog_self.html]
+    Profile-->|chose to edit a post?|Edit[blog_edit.html]
+    Edit-->|pressed save and exit?|Profile
+    Profile-->|pressed home?|Home
+
+    Home-->|Searched for a username?|Search[search.html]
+    Search-->|pressed home?|Home
+    Search-->|clicked a user?|Stranger[blog_view.html]
+    Stranger-->|clicked home?|Home
 ```
 
 ## Key User Stories
