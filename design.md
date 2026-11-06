@@ -92,19 +92,18 @@ Each member must own meaningful deliverables.
 # Component map
 
 {Insert your mermaid(or equivalent)-generated diagram here}
-```
-Website Interface
-   ↕
-Flask Server (app.py)
-   ↕
-Backend
-   ├── Authentication (auth.py)
-   ├── Page Management (blog_view.py)
-   └── Search Engine (search.py)
-   ↕
-Database Management (SQLite3 queries)
-   ↕
-Database
+``` mermaid
+flowchart TD
+    A(Website Interface)<-->B("Flask server (app.py)")
+    B<-->Backend
+    Backend<-->F("Database management (SQLite3 queries)")
+    F<-->G(Database)
+
+subgraph Backend
+    C("Authentication (auth.py)")
+    D("Page Management (blog_view.py)")
+    E("Search Engine (search.py)")
+end
 ```
 
 # Site map
