@@ -2,7 +2,7 @@
 
 ## TNPG: Hypergamy
 ## project: WeBlog
-## Target ship date: {2026-11-20}
+## Target ship date: {2026-11-18}
 
 ---
 
