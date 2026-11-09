@@ -109,26 +109,34 @@ end
 
 ``` mermaid
 flowchart TD
-    Start[START]-->Home[home.html]
-    Home-->|pressed login?|Login[login.html]
+    Start[START]-->Home["/"]
+    Home-->|pressed login?|Login["/login"]
     Login-->LoginD{Correct credentials?}
     LoginD-->|true|LoginT(Add user to session)-->Home
     LoginD-->|false|LoginF(Redirect, show error message on the page)-->Login
 
-    Home-->|pressed sign up?|NewUser[new_user.html]
+    Home-->|pressed sign up?|NewUser["/new_user"]
     NewUser-->NewUserD{Username taken?}
     NewUserD-->|true|NewUserT(Redirect, show error message on the page)-->NewUser
     NewUserD-->|false|NewUserF(Add account info to DB)-->NewUserF2(Add user to session)-->Home
 
-    Home-->|pressed Profile?|z(Redirect to blog_view, but with your own id as the page you are viewing)
-    z-->Stranger
-    Stranger-->|"pressed edit? (edit button does not appear unless you made the post)"|Edit[blog_edit.html]
-    Edit-->|pressed save and exit?|Stranger
+    Home-->|pressed search|Search("/search")
+    Search-->SearchD{Query matches exactly with an existing user?}
+    SearchD-->|true|ProfilesUID("/profiles/{user_id}")
+    SearchD-->|false|ProfilesF("/search?match=false, and show a list of all partial matches")
+    ProfilesF-->|"click option"|ProfilesUID
 
-    Home-->|Searched for a username?|Search[search.html]
-    Search-->|pressed home?|Home
-    Search-->|clicked a user?|Stranger[blog_view.html]
-    Stranger-->|clicked home?|Home
+    ProfilesUID-->|pressed edit|EditD{post_owner is logged in user?}
+    EditD-->|true|Editable("/profiles/{user_id}/edit/{post_id}")
+    EditD-->|false|EditPermDenied("/profiles/{user_id}/edit/permission_denied")-->ProfilesUID
+
+    ProfilesUID-->|pressed create|CreateD{post_owner is logged in user?}
+    CreateD-->|true|Editable
+    CreateD-->|false|EditPermDenied
+
+    Editable-->|cancel|ProfilesUID
+    Editable-->|save|ATDB("add/edit to DB")-->Editable
+    Editable-->|save and exit|ATDB2("add/edit to DB")-->ProfilesUID
 ```
 
 ## Key User Stories
