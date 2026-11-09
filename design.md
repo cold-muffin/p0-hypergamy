@@ -48,12 +48,12 @@ Features that **must** be completed:
 1. Seeing all your unpublished / published blog posts, and being able to publish/unpublish them.
 
 ## Stretch Features (Only if MVP is Complete)
-1. A main feed that shows blog posts from multiple users (these are just the most recently published ones)
-1. 
-1. 
+1. No edit or create button appearing on posts that aren't yours. (The buttons won't work on posts you don't own anyways)
+1. Let users create a bio, maybe even a profile image?
+1. Super stretch: A main feed that shows blog posts from multiple users (these are just the most recently published ones)
 
 ## Explicit Non-Goals
-- 
+- Live rendering of the html text as you edit it.
 - 
 
 Features intentionally excluded:
@@ -141,13 +141,13 @@ flowchart TD
 
 ## Key User Stories
 ### eg0
-As a __________, I want to __________ so that...
+As a writer, I want to make the blog posts so that people think I'm supa cool.
 
 ### eg1
-As a __________, I want to __________ so that...
+As a person, I want to read other people's blog posts so that I can get dopamine.
 
 ### eg2
-As a __________, I want to __________ so that...
+As a web crawler, I want to eat all the blog posts so that I can make my masters rich.
 
 
 
