@@ -10,10 +10,11 @@
 
 
 | Name | Email | Primary Role | Secondary Role |
-| Leon Wong | leonw17@nycstudents.net |---|---|
-| Marcos Lehman | marcosl30@nycstudents.net |---|---|
-| Wenjie Ma | wenjiem@nycstudents.net |---|---|
-| Efrat Hossain | efrath3@nycstudents.net |---|---|
+|---|---|---|---|
+| Leon Wong | leonw17@nycstudents.net | Databases | Backend |
+| Marcos Lehman | marcosl30@nycstudents.net | Webpage Design | Backend |
+| Wenjie Ma | wenjiem@nycstudents.net | Webpage Design | Databases |
+| Efrat Hossain | efrath3@nycstudents.net | Backend | Databases |
 
 ---
 
@@ -54,11 +55,9 @@ Features that **must** be completed:
 
 ## Explicit Non-Goals
 - Live rendering of the html text as you edit it.
-- 
 
 Features intentionally excluded:
-- 
-- 
+- View counter. It's too hard for many reasons.
 
 ---
 
