@@ -15,3 +15,9 @@ Reviewed by twelveyez
 - Files that we had are not technically servers.
 - Instructions are a bit vague.
 - Doesn't really give helpful tips for our design doc (not constructive criticism, more of just insulting and misguided opinions)
+
+DD2 REVIEW -- 2026-11-10
+
+- Be more clear about what is and isn't in a module. 
+- Trust in DB operations more (and their efficiency)
+- Elaborate on the implementation of some functions.
