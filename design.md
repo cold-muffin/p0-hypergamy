@@ -155,7 +155,7 @@ As a web crawler, I want to eat all the blog posts so that I can make my masters
 ```mermaid
 erDiagram
     users {
-        INTEGER uuid PK
+        INTEGER uuid "PK, AUTOINCREMENT"
         TEXT username
         BLOB password
     }
