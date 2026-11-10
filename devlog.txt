@@ -29,3 +29,7 @@ marcosL -- 2026-11-10 13:06
 marcosL -- 2026-11-10 13:34
 	I'm about to print the DD (actually on time this time).
 	Also I read the github and yeah most recent log is at bottom. silly me.
+
+marcosL -- 2026-11-10 16:33
+	In db.py, added add_user(-), get_user(-) -> dict
+	Also added private method __reset(). Don't use private methods from other scripts.
