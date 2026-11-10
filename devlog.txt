@@ -27,4 +27,5 @@ marcosL -- 2026-11-10 13:06
 	Also I'm not sure if we are meant to have the most recent logs at the top. I think it would be more convenient, but we should check / confirm with MDTM / ask on QAF first. *###*Note to self to do that later.*###*
 
 marcosL -- 2026-11-10 13:34
-	I'm about to print the DD (actually on time this time)
+	I'm about to print the DD (actually on time this time).
+	Also I read the github and yeah most recent log is at bottom. silly me.
