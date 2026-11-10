@@ -164,7 +164,7 @@ erDiagram
 ```mermaid
 erDiagram
     blog_posts {
-        INTEGER pid PK AUTOINCREMENT
+        INTEGER pid "PK, AUTOINCREMENT"
         INTEGER owner
         TEXT title
         BLOB contents
