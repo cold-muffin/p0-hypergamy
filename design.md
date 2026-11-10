@@ -109,12 +109,12 @@ end
 ``` mermaid
 flowchart TD
     Start[START]-->Home["/"]
-    Home-->|pressed login?|Login["/login"]
+    Home-->|pressed login|Login["/login"]
     Login-->LoginD{Correct credentials?}
     LoginD-->|true|LoginT(Add user to session)-->Home
     LoginD-->|false|LoginF(Redirect, show error message on the page)-->Login
 
-    Home-->|pressed sign up?|NewUser["/new_user"]
+    Home-->|pressed sign up|NewUser["/new_user"]
     NewUser-->NewUserD{Username taken?}
     NewUserD-->|true|NewUserT(Redirect, show error message on the page)-->NewUser
     NewUserD-->|false|NewUserF(Add account info to DB)-->NewUserF2(Add user to session)-->Home
@@ -133,9 +133,9 @@ flowchart TD
     CreateD-->|true|Editable
     CreateD-->|false|EditPermDenied
 
-    Editable-->|cancel|ProfilesUID
-    Editable-->|save|ATDB("add/edit to DB")-->Editable
-    Editable-->|save and exit|ATDB2("add/edit to DB")-->ProfilesUID
+    Editable-->|pressed cancel|ProfilesUID
+    Editable-->|pressed save|ATDB("add/edit to DB")-->Editable
+    Editable-->|pressed save and exit|ATDB2("add/edit to DB")-->ProfilesUID
 ```
 
 ## Key User Stories
