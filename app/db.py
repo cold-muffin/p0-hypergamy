@@ -16,6 +16,19 @@ def __reset():
     c.execute("CREATE TABLE blog_posts (pid INTEGER PRIMARY KEY AUTOINCREMENT, owner INTEGER, title TEXT, contents BLOB, published INTEGER)")
     db.commit()
     
+def __turn_cursor_into_list(table:str):
+    header = ["uuid", "username", "password"] if table == "users" else ['pid', 'owner', 'title', 'contents', 'published']
+    
+    result = []
+    contents = [a for a in c]
+    print(contents)
+    for row in contents:
+        d = {}
+        for i, key in enumerate(header):
+            d[key] = contents[i]
+        result.append(copy.deepcopy(d))
+    return result
+        
 def add_user(name, password=None):
     """
     Adds a new user to the database.
@@ -48,10 +61,11 @@ def get_user(key):
     try:
         by = 'username' if type(key) == str else 'uuid'
         c.execute(f"SELECT * FROM users WHERE {by} = '{key}'")
-        contents = [a for a in [a for a in c][0]]
-        d["uuid"] = contents[0]
-        d["username"] = contents[1]
-        d["password"] = contents[2]
+#         contents = [a for a in [a for a in c][0]]
+#         d["uuid"] = contents[0]
+#         d["username"] = contents[1]
+#         d["password"] = contents[2]
+        d = __turn_cursor_into_list("users")
         return d
     except:
         return None
