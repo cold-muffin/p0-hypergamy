@@ -1,31 +1,60 @@
 import sqlite3
 import copy
 
-db = sqlite3.connect("db.db")
+dbpath = "db.db"
+db = sqlite3.connect(dbpath)
 c = db.cursor()
 
-def __reset(path:str):
+def __reset():
     """
-    Wipes the entire database file. Initializes the tables.
+    Wipes the entire database file, creates the table.
+    Returns nothing.
     """
-    f = open(path, mode='w')
-    f.write('')
-    f.close()
-
+    c.execute("DROP TABLE IF EXISTS users")
+    c.execute("DROP TABLE IF EXISTS blog_posts")
     c.execute("CREATE TABLE users (uuid INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password BLOB)")
     c.execute("CREATE TABLE blog_posts (pid INTEGER PRIMARY KEY AUTOINCREMENT, owner INTEGER, title TEXT, contents BLOB, published INTEGER)")
     db.commit()
     
-def get_user(key, by:str):
+def add_user(name, password=None):
     """
-    Gets user from the database. key is what you are using to select the user. by is a hint to tell
-    what column you are selecting for.
-    e.g. get_user("john_doe", "username")
-    e.g. get_user(3, "uuid")
+    Adds a new user to the database.
+    Returns nothing.
+    
+    name -- username that the user is gonna have
+    password -- the user's password, unencrypted. NOTE that at the moment, this function does not encrypt the password. Oops! (default=None)
+    
+    e.g. add_user("pig")
+    e.g. add_user("john_dont", "pass123secret")
+    """
+    if password:
+        c.execute(f"INSERT INTO users (username, password) VALUES ('{name}', '{password}')")
+    else:
+        c.execute(f"INSERT INTO users (username) VALUES ('{name}')")
+    db.commit()
+    
+def get_user(key):
+    """
+    Gets user from the database. You cannot select a user by the password.
+    Returns a dictionary with the user's data. or returns None if there is an error.
+    
+    key -- either the uuid or the username of the user you want to retrieve.
+    
+    e.g. get_user(3) -> {'uuid': 3, 'username': 'john_doe', 'password': 'pass123secret'}
+    e.g. get_user("john_doe") -> {'uuid': 3, 'username': 'john_doe', 'password': 'pass123secret'}
     """
     d = {}
     
-    c.execute(f"SELECT * FROM users WHERE {by} = {key}")
-    
+    try:
+        by = 'username' if type(key) == str else 'uuid'
+        c.execute(f"SELECT * FROM users WHERE {by} = '{key}'")
+        contents = [a for a in [a for a in c][0]]
+        d["uuid"] = contents[0]
+        d["username"] = contents[1]
+        d["password"] = contents[2]
+        return d
+    except:
+        return None
+
 if __name__ == '__main__':
     pass
