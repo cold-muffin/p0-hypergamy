@@ -152,6 +152,27 @@ As a web crawler, I want to eat all the blog posts so that I can make my masters
 
 # Database Design
 
+```mermaid
+erDiagram
+    users {
+        INTEGER uuid PK
+        TEXT username
+        BLOB password
+    }
+```
+
+```mermaid
+erDiagram
+    blog_posts {
+        INTEGER pid PK,AUTOINCREMENT
+        INTEGER owner
+        TEXT title
+        BLOB contents
+        INTEGER published
+    }
+```
+
+### Example of populated DBs
 users
 |uuid INTEGER PRIMARY KEY|username TEXT|password BLOB|
 |---|---|---|
