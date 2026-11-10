@@ -152,7 +152,19 @@ As a web crawler, I want to eat all the blog posts so that I can make my masters
 
 # Database Design
 
-{Insert your table/document organizational structure here. See N&C for schema representation conventions.}
+users
+|uuid INTEGER PRIMARY KEY|username TEXT|password BLOB|
+|---|---|---|
+|1|coldmuffin|\(hashed password\)|
+|2|john_doe_|\(hashed password\)|
+|3|jawed|\(hashed password\)|
+
+blog_posts
+|pid INTEGER PRIMARY KEY AUTOINCREMENT|owner INTEGER|title TEXT|contents BLOB|published INTEGER|
+|---|---|---|---|---|
+|1|3|Going to the zoo today!|\(the html file of the blog post\)|1|
+|2|2|Generic Manifesto|\(the html file of the blog post\)|0|
+Note about published: 1 means post is public (anyone can see it), 0 means unpublished (only the owner can see it)
 
 
 # Testing Plan
