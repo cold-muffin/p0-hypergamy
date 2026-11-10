@@ -2,7 +2,7 @@
 
 ## TNPG: Hypergamy
 ## project: WeBlog
-## Target ship date: {2026-11-20}
+## Target ship date: {2026-11-18}
 
 ---
 
@@ -10,10 +10,11 @@
 
 
 | Name | Email | Primary Role | Secondary Role |
-| Leon Wong | leonw17@nycstudents.net |---|---|
-| Marcos Lehman | marcosl30@nycstudents.net |---|---|
-| Wenjie Ma | wenjiem@nycstudents.net |---|---|
-| Efrat Hossain | efrath3@nycstudents.net |---|---|
+|---|---|---|---|
+| Leon Wong | leonw17@nycstudents.net | Databases | Backend |
+| Marcos Lehman | marcosl30@nycstudents.net | Webpage Design | Backend |
+| Wenjie Ma | wenjiem@nycstudents.net | Webpage Design | Databases |
+| Efrat Hossain | efrath3@nycstudents.net | Backend | Databases |
 
 ---
 
@@ -54,11 +55,9 @@ Features that **must** be completed:
 
 ## Explicit Non-Goals
 - Live rendering of the html text as you edit it.
-- 
 
 Features intentionally excluded:
-- 
-- 
+- View counter. It's too hard for many reasons.
 
 ---
 
@@ -110,12 +109,12 @@ end
 ``` mermaid
 flowchart TD
     Start[START]-->Home["/"]
-    Home-->|pressed login?|Login["/login"]
+    Home-->|pressed login|Login["/login"]
     Login-->LoginD{Correct credentials?}
     LoginD-->|true|LoginT(Add user to session)-->Home
     LoginD-->|false|LoginF(Redirect, show error message on the page)-->Login
 
-    Home-->|pressed sign up?|NewUser["/new_user"]
+    Home-->|pressed sign up|NewUser["/new_user"]
     NewUser-->NewUserD{Username taken?}
     NewUserD-->|true|NewUserT(Redirect, show error message on the page)-->NewUser
     NewUserD-->|false|NewUserF(Add account info to DB)-->NewUserF2(Add user to session)-->Home
@@ -134,9 +133,9 @@ flowchart TD
     CreateD-->|true|Editable
     CreateD-->|false|EditPermDenied
 
-    Editable-->|cancel|ProfilesUID
-    Editable-->|save|ATDB("add/edit to DB")-->Editable
-    Editable-->|save and exit|ATDB2("add/edit to DB")-->ProfilesUID
+    Editable-->|pressed cancel|ProfilesUID
+    Editable-->|pressed save|ATDB("add/edit to DB")-->Editable
+    Editable-->|pressed save and exit|ATDB2("add/edit to DB")-->ProfilesUID
 ```
 
 ## Key User Stories
@@ -153,7 +152,42 @@ As a web crawler, I want to eat all the blog posts so that I can make my masters
 
 # Database Design
 
-{Insert your table/document organizational structure here. See N&C for schema representation conventions.}
+```mermaid
+erDiagram
+    users {
+        INTEGER uuid "PK, AUTOINCREMENT"
+        TEXT username
+        BLOB password
+    }
+```
+
+```mermaid
+erDiagram
+    blog_posts {
+        INTEGER pid "PK, AUTOINCREMENT"
+        INTEGER owner
+        TEXT title
+        BLOB contents
+        INTEGER published
+    }
+```
+
+### Example of populated DBs
+users
+|uuid INTEGER PRIMARY KEY|username TEXT|password BLOB|
+|---|---|---|
+|1|coldmuffin|\(hashed password\)|
+|2|john_doe_|\(hashed password\)|
+|3|jawed|\(hashed password\)|
+
+blog_posts
+|pid INTEGER PRIMARY KEY AUTOINCREMENT|owner INTEGER|title TEXT|contents BLOB|published INTEGER|
+|---|---|---|---|---|
+|1|3|Going to the zoo today!|\(the html file of the blog post\)|1|
+|2|2|Generic Manifesto|\(the html file of the blog post\)|0|
+|3|2|Looking for Janes...|\(the html file of the blog post\)|1|
+
+Note about published: 1 means post is public (anyone can see it), 0 means unpublished (only the owner can see it)
 
 
 # Testing Plan

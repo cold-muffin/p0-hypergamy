@@ -15,3 +15,17 @@ Reviewed by twelveyez
 - Files that we had are not technically servers.
 - Instructions are a bit vague.
 - Doesn't really give helpful tips for our design doc (not constructive criticism, more of just insulting and misguided opinions)
+
+DD2 REVIEW -- 2026-11-10
+
+- Be more clear about what is and isn't in a module. 
+- Trust in DB operations more (and their efficiency)
+- Elaborate on the implementation of some functions.
+
+marcosL -- 2026-11-10 13:06
+	Mermaid was giving me a lot of troubles, but I reformatted our existing DB in design.md to fit what MDTM said it should be.
+	Also I'm not sure if we are meant to have the most recent logs at the top. I think it would be more convenient, but we should check / confirm with MDTM / ask on QAF first. *###*Note to self to do that later.*###*
+
+marcosL -- 2026-11-10 13:34
+	I'm about to print the DD (actually on time this time).
+	Also I read the github and yeah most recent log is at bottom. silly me.
