@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> WeBlog </title>
+</head>
+
+<body>
+  <h1>
+    Log In
+  </h1>
+    <h3>
+        Welcome back! Please enter your username and password.
+    </h3>
+
+    <form action="/login" method="post">
+      <p>
+        <input type="hidden" name="username" value="{{ username }}">
+        <input type="password" name="password" placeholder="Password">
+        <button>Log in</button>
+      </p>
+    </form>
+    <p>
+      Don't have an account? Sign up
+    </p>
+
+    <p>
+      Forgot password?
+    </p>
+
+    <br>
+</body>
+
+</html>
