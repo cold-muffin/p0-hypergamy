@@ -164,6 +164,7 @@ blog_posts
 |---|---|---|---|---|
 |1|3|Going to the zoo today!|\(the html file of the blog post\)|1|
 |2|2|Generic Manifesto|\(the html file of the blog post\)|0|
+|3|2|Looking for Janes...|\(the html file of the blog post\)|1|
 
 Note about published: 1 means post is public (anyone can see it), 0 means unpublished (only the owner can see it)
 
