@@ -33,3 +33,6 @@ marcosL -- 2026-11-10 13:34
 marcosL -- 2026-11-10 16:33
 	In db.py, added add_user(-), get_user(-) -> dict
 	Also added private method __reset(). Don't use private methods from other scripts.
+
+marcosL -- 2026-11-10 16:58
+	In db.py, added a private method __turn_cursor_into_list(-) that makes it easier for me to get the data from a cursor's selected stuff.
