@@ -36,3 +36,11 @@ marcosL -- 2026-11-10 16:33
 
 marcosL -- 2026-11-10 16:58
 	In db.py, added a private method __turn_cursor_into_list(-) that makes it easier for me to get the data from a cursor's selected stuff.
+
+
+wenjieM -- 2026-11-10 
+	Added folders for app and added login.html code
+
+wenjieM -- 2026-11-11
+	Added search.html code temp but no css
+

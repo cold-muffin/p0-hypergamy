@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> WeBlog | Search </title>
+</head>
+
+<body>
+    <h1>
+    Search
+    </h1>
+    <h3>
+        Find someone's blog by searching for their username.
+    </h3>
+
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+
+    <form action="/search" method="get">
+    <p>
+        <label for="query">Username:</label>
+        <input type="search" id="query" name="query" value="{{ query|default('', true) }}" placeholder="Enter a username" required>
+        <button type="submit">Search</button>
+    </p>
+    </form>
+
+    {% if query %}
+        <h2>Results for "{{ query }}"</h2>
+        {% if results %}
+            <ul>
+                {% for user in results %}
+                    <li>
+                        <a href="/profiles/{{ user['user_id'] }}">
+                            {{ user['username'] }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No users found.</p>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
