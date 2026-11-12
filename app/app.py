@@ -13,7 +13,7 @@ def login():
 
 @app.route("/new_user")
 def new_user():
-    return "New user"
+    return render_template("new_user.html")
 
 @app.route("/search")
 def search():
