@@ -34,15 +34,7 @@ def add_user(name:str, password=None):
     db.commit()
     
 def add_blog(owner:int, title:str, contents, published=False):
-    """
-    Adds a new blog post to the database.
-    Returns nothing.
-    
-    owner (int) -- uuid of the blog post's owner
-    title (str) -- title of the blog post
-    contents -- contents of the file, in whatever data
-    * published (boolean) -- if the blog post is public or not (default=False)
-    """
+    """Adds a new blog post to the database.\nReturns nothing.\n\nowner (int) -- uuid of the blog post's owner\ntitle (str) -- title of the blog post\ncontents -- contents of the file, in whatever data\n* published (boolean) -- if the blog post is public or not (default=False)"""
     c.execute(f"INSERT INTO blog_posts (owner, title, contents, published) VALUES ({owner}, '{title}', {contents}, {1 if published else 0})")
     db.commit()
 
