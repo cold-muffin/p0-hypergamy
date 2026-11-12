@@ -21,11 +21,10 @@ def __turn_cursor_into_list(table:str):
     
     result = []
     contents = [a for a in c]
-    print(contents)
-    for row in contents:
+    for user in contents:
         d = {}
         for i, key in enumerate(header):
-            d[key] = contents[i]
+            d[key] = user[i]
         result.append(copy.deepcopy(d))
     return result
         
@@ -61,10 +60,6 @@ def get_user(key):
     try:
         by = 'username' if type(key) == str else 'uuid'
         c.execute(f"SELECT * FROM users WHERE {by} = '{key}'")
-#         contents = [a for a in [a for a in c][0]]
-#         d["uuid"] = contents[0]
-#         d["username"] = contents[1]
-#         d["password"] = contents[2]
         d = __turn_cursor_into_list("users")
         return d
     except:
