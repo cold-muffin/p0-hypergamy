@@ -46,3 +46,5 @@ wenjieM -- 2026-11-10
 wenjieM -- 2026-11-11
 	Added search.html code temp but no css
 
+efratH -- 2026-11-12
+	Added deliverables for today's due date. Added routes in app.py.
