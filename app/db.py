@@ -6,10 +6,7 @@ db = sqlite3.connect(dbpath)
 c = db.cursor()
 
 def __reset():
-    """
-    Wipes the entire database file, creates the table.
-    Returns nothing.
-    """
+    """Wipes the entire database file, creates the table.\nReturns nothing."""
     c.execute("DROP TABLE IF EXISTS users")
     c.execute("DROP TABLE IF EXISTS blog_posts")
     c.execute("CREATE TABLE users (uuid INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password BLOB)")
@@ -28,33 +25,29 @@ def __turn_cursor_into_list(table:str):
         result.append(copy.deepcopy(d))
     return result
         
-def add_user(name, password=None):
-    """
-    Adds a new user to the database.
-    Returns nothing.
-    
-    name -- username that the user is gonna have
-    password -- the user's password, unencrypted. NOTE that at the moment, this function does not encrypt the password. Oops! (default=None)
-    
-    e.g. add_user("pig")
-    e.g. add_user("john_dont", "pass123secret")
-    """
+def add_user(name:str, password=None):
+    """Adds a new user to the database.\nReturns nothing.\n\nname -- username that the user is gonna have password -- the user's password, unencrypted. NOTE that at the moment, this function does not encrypt the password. Oops! (default=None)\n\ne.g. add_user("pig")\ne.g. add_user("john_dont", "pass123secret")"""
     if password:
         c.execute(f"INSERT INTO users (username, password) VALUES ('{name}', '{password}')")
     else:
         c.execute(f"INSERT INTO users (username) VALUES ('{name}')")
     db.commit()
     
+def add_blog(owner:int, title:str, contents, published=False):
+    """
+    Adds a new blog post to the database.
+    Returns nothing.
+    
+    owner (int) -- uuid of the blog post's owner
+    title (str) -- title of the blog post
+    contents -- contents of the file, in whatever data
+    * published (boolean) -- if the blog post is public or not (default=False)
+    """
+    c.execute(f"INSERT INTO blog_posts (owner, title, contents, published) VALUES ({owner}, '{title}', {contents}, {1 if published else 0})")
+    db.commit()
+
 def get_user(key):
-    """
-    Gets user from the database. You cannot select a user by the password.
-    Returns a dictionary with the user's data. or returns None if there is an error.
-    
-    key -- either the uuid or the username of the user you want to retrieve.
-    
-    e.g. get_user(3) -> {'uuid': 3, 'username': 'john_doe', 'password': 'pass123secret'}
-    e.g. get_user("john_doe") -> {'uuid': 3, 'username': 'john_doe', 'password': 'pass123secret'}
-    """
+    """Gets user from the database. You cannot select a user by the password.\nReturns a dictionary with the user's data. or returns None if there is an error.\n\nkey -- either the uuid or the username of the user you want to retrieve.\n\ne.g. get_user(3) -> {'uuid': 3, 'username': 'john_doe', 'password': 'pass123secret'}\ne.g. get_user("john_doe") -> {'uuid': 3, 'username': 'john_doe', 'password': 'pass123secret'}"""
     d = {}
     
     try:
