@@ -6,19 +6,29 @@ You can see other people's blogs without logging in to see what's happening on t
 
 ## Install Guide
 
-### Quick n' dirty
+### 1. Clone Repository
 
 ```
 git clone git@github.com:cold-muffin/p0-hypergamy.git # clone repo
+cd p0-hypergamy # enter directory
+```
+
+### 2a. Quick n' dirty
+
+May not work if your machine doesn't give you permission to install external libraries. Main python environment may also become dirty after this.
+
+```
 pip install -r requirements.txt # install dependencies
 python app/serve.py # run app
 ```
 
-### Clean
+### 2b. Clean
+
+Takes a little longer but is significantly more organized. Make sure to choose a method of running the app.
 
 ```
-git clone git@github.com:cold-muffin/p0-hypergamy.git # clone repo
 python -m venv .venv # create virtual environment
+source .venv/bin/activate
 pip install -r requirements.txt # install dependencies
 # Uncomment one of these lines:
 # python app/serve.py # run app in prod mode
