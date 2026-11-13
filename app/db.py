@@ -46,6 +46,10 @@ def get_user(key):
 def get_blog(key):
     """Gets the blog that matches the given pid.\nkey : int = gets the blog post by the pid."""
     return __get_user_or_blog(key, "blog_posts")[0]
+
+def get_all_user_posts(key):
+    """Gets all blog posts that a specific user made.\n\nkey -- either the username (str) or the uuid (int) of the user whom you are trying to get posts from."""
+    return __get_user_or_blog(key, "users")
         
 def __get_user_or_blog(key, which:str):
     """get_user(-) and get_blog(-) are wrappers of this method.\n\nwhich -- which db you want. Only valid values are "users" or "blog_posts"."""
