@@ -51,3 +51,6 @@ efratH -- 2026-11-12
 
 efratH -- 2026-11-13
 	Added instructions for installation.
+
+marcosL -- 2026-11-13 07:36
+    Debug __turn_cursor_into_list(-), add add_blog_post(-)
