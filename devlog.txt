@@ -60,3 +60,6 @@ efratH -- 2026-11-13
 
 leonW - 2026-11-13
 	Finalized profile.html code.
+
+marcosL -- 2026-11-13 15:23
+	Added get_blog(-), along with private method __get_user_or_blog(-)
