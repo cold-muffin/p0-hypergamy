@@ -34,18 +34,27 @@ def add_user(name:str, password=None):
     db.commit()
     
 def add_blog(owner:int, title:str, contents, published=False):
+    title = title.replace("'", "''")
     """Adds a new blog post to the database.\nReturns nothing.\n\nowner (int) -- uuid of the blog post's owner\ntitle (str) -- title of the blog post\ncontents -- contents of the file, in whatever data\n* published (boolean) -- if the blog post is public or not (default=False)"""
-    c.execute(f"INSERT INTO blog_posts (owner, title, contents, published) VALUES ({owner}, '{title}', {contents}, {1 if published else 0})")
+    c.execute(f"INSERT INTO blog_posts (owner, title, contents, published) VALUES ({owner}, '{title}', {contents}, {1 if published else 0});")
     db.commit()
 
 def get_user(key):
     """Gets user from the database. You cannot select a user by the password.\nReturns a dictionary with the user's data. or returns None if there is an error.\n\nkey -- either the uuid or the username of the user you want to retrieve.\n\ne.g. get_user(3) -> {'uuid': 3, 'username': 'john_doe', 'password': 'pass123secret'}\ne.g. get_user("john_doe") -> {'uuid': 3, 'username': 'john_doe', 'password': 'pass123secret'}"""
-    d = {}
-    
+    return __get_user_or_blog(key, "users")
+
+def get_blog(key):
+    if (type(key) == str):
+        key = key.replace("'", "''")
+    return __get_user_or_blog(key, "blog_posts")
+        
+def __get_user_or_blog(key, which:str):
+    """get_user(-) and get_blog(-) are wrappers of this method.\n\nwhich -- which db you want. Only valid values are "users" or "blog_posts"."""
     try:
-        by = 'username' if type(key) == str else 'uuid'
-        c.execute(f"SELECT * FROM users WHERE {by} = '{key}'")
-        d = __turn_cursor_into_list("users")
+        # this line: decides which column names to use depending on the db u want.
+        by = ('username' if type(key) == str else 'uuid') if which == "users" else ('title' if type(key) == str else 'owner')
+        c.execute(f"SELECT * FROM {which} WHERE {by} = '{key}'")
+        d = __turn_cursor_into_list(which)
         return d
     except:
         return None
