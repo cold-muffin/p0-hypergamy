@@ -44,15 +44,14 @@ def get_user(key):
     return __get_user_or_blog(key, "users")
 
 def get_blog(key):
-    if (type(key) == str):
-        key = key.replace("'", "''")
+    """Gets the blog that matches the given pid.\nkey : int = gets the blog post by the pid."""
     return __get_user_or_blog(key, "blog_posts")
         
 def __get_user_or_blog(key, which:str):
     """get_user(-) and get_blog(-) are wrappers of this method.\n\nwhich -- which db you want. Only valid values are "users" or "blog_posts"."""
     try:
         # this line: decides which column names to use depending on the db u want.
-        by = ('username' if type(key) == str else 'uuid') if which == "users" else ('title' if type(key) == str else 'owner')
+        by = ('username' if type(key) == str else 'uuid') if which == "users" else ('pid')
         c.execute(f"SELECT * FROM {which} WHERE {by} = '{key}'")
         d = __turn_cursor_into_list(which)
         return d
