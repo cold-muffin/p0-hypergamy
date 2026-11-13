@@ -18,7 +18,7 @@ Reviewed by twelveyez
 
 DD2 REVIEW -- 2026-11-10
 
-- Be more clear about what is and isn't in a module. 
+- Be more clear about what is and isn't in a module.
 - Trust in DB operations more (and their efficiency)
 - Elaborate on the implementation of some functions.
 
@@ -40,7 +40,7 @@ marcosL -- 2026-11-10 16:58
 leonW -- 2026-11-10
 	Added code for profile template
 
-wenjieM -- 2026-11-10 
+wenjieM -- 2026-11-10
 	Added folders for app and added login.html code
 
 wenjieM -- 2026-11-11
@@ -60,3 +60,7 @@ efratH -- 2026-11-13
 
 leonW - 2026-11-13
 	Finalized profile.html code.
+
+
+wenjieM -- 2026-11-13
+	Added search.py and applied jinja
