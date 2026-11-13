@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+        WeBlog | Sign Up
+    </title>
+  </head>
+  <body>
+    <h1>
+      Sign up
+    </h1>
+    <h3>
+      Let's Get Started! Create an username and password.
+    </h3>
+    {% if error %}
+      <p>{{ error }}</p>
+    {% endif %}
+    <form action = "/new_user" method = "post">
+      <p>
+      <label for="username">Create username:</label>
+      <input type="text" id="username" name="username" value="{{ username|default('', true) }}"placeholder="Username" required>
+      </p>
+      <button type="submit">Sign up</button>
+    </form>
+
+
+  </body>
+
+
+
+
+</html>
