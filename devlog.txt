@@ -53,7 +53,7 @@ wenjieM -- 2026-11-12
 	Added new_user.html
 
 marcosL -- 2026-11-12
-    Debug __turn_cursor_into_list(-), add add_blog_post(-)
+    Debug __turn_cursor_into_list(-), add add_blog(-)
 
 efratH -- 2026-11-13
 	Added instructions for installation.
