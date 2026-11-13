@@ -48,3 +48,6 @@ wenjieM -- 2026-11-11
 
 efratH -- 2026-11-12
 	Added deliverables for today's due date. Added routes in app.py.
+
+efratH -- 2026-11-13
+	Added instructions for installation.
