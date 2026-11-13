@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Response</title>
+</head>
+<body>
+  {% if error %}
+    <h1>{{ error }}</h1>
+
+    <form action="/check_username" method="post">
+      <input type="text" name="username" value="{{ username }}" placeholder="username">
+      <button>Try again</button>
+    </form>
+
+  {% else %}
+    <h1>Welcome, {{ username }}!</h1>
+
+    <form action="/logout" method="post">
+      <button>Log out</button>
+    </form>
+  {% endif %}
+</body>
+</html>
