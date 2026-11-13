@@ -49,8 +49,11 @@ wenjieM -- 2026-11-11
 efratH -- 2026-11-12
 	Added deliverables for today's due date. Added routes in app.py.
 
+wenjieM -- 2026-11-12
+	Added new_user.html
+
+marcosL -- 2026-11-12
+    Debug __turn_cursor_into_list(-), add add_blog_post(-)
+
 efratH -- 2026-11-13
 	Added instructions for installation.
-
-marcosL -- 2026-11-13 07:36
-    Debug __turn_cursor_into_list(-), add add_blog_post(-)
