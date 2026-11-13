@@ -69,3 +69,7 @@ wenjieM -- 2026-11-13
 
 wenjieM -- 2026-11-13
 	Added logout and response html
+
+efratH -- 2026-11-13
+	Testing branch
+	Successful add_user test
