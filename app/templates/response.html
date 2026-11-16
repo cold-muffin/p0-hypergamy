@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WeBlog | Home </title>
+</head>
+<body>
+  {% if username %}
+    <h1>Welcome, {{ username }}! </h1>
+    <p> 
+      You are logged in.
+    </p>
+    
+    <form action="/logout" method="post">
+      <button>Log out</button>
+    </form>
+
+  {% else %}
+    <h1>Welcome to WeBlog!</h1>
+    <p> 
+      You are not logged in.
+    </p>
+    <p>
+      <a href="/login">Log in</a>
+      <br>
+      <a href="/new_user">Sign up</a>
+    </p>
+  {% endif %}
+</body>
+</html>

@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WeBlog | Profile</title>
+</head>
+
+<body>
+    <h1>{{ user.username }}'s Profile</h1>
+
+    <a href="/">Home</a>
+    <a href="/search">Search</a>
+
+    <h2>Blog Posts</h2>
+
+    {% for post in posts %}
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.contents }}</p>
+
+        {% if post.published %}
+            <p>Published</p>
+        {% else %}
+            <p>Unpublished</p>
+        {% endif %}
+
+        <a href="/profiles/{{ user.uuid }}/edit/{{ post.pid }}">
+            Edit Post
+        </a>
+
+        <hr>
+    {% endfor %}
+
+    <a href="/profiles/{{ user.uuid }}/edit/new">
+        Create New Post
+    </a>
+
+</body>
+</html>
+

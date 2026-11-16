@@ -1,11 +1,13 @@
 from flask import Flask
 from flask import render_template
+from search import search
+from flask import session
 
 app = Flask(__name__)
 
 @app.route("/")
 def root():
-    return "Hello world"
+    return render_template("response.html", username = session.get("username"))
 
 @app.route("/login")
 def login():
@@ -16,8 +18,12 @@ def new_user():
     return render_template("new_user.html")
 
 @app.route("/search")
-def search():
-    return render_template("search.html")
+def search_h():
+    return search()
+
+@app.route("/profile")
+def profile():
+    return render_template("profile.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
