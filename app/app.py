@@ -6,11 +6,12 @@ from flask import request
 from flask import redirect
 from flask import url_for
 
-from db import __reset, add_user
+from db import add_user, get_user, get_blog, setup_db
 from auth import auth
 
 app = Flask(__name__)
 app.secret_key = "dev"
+setup_db()  # Make tables if they do not already exist
 
 @app.route("/")
 def root():
@@ -51,8 +52,42 @@ def search_h():
 
 @app.route("/profile")
 def profile():
-    return render_template("profile.html")
+    #User's own profile
+    username = session.get("username")
+    if not username:
+        return redirect("/login")
+
+    users = get_user(username)
+    if not users:
+        return redirect("/login")
+
+    return redirect("/profiles/" + str(users[0]["uuid"]))
+
+
+@app.route("/profiles/<int:user_id>")
+def view_profile(user_id):
+    users = get_user(user_id)
+    if not users:
+        return "User not found", 404
+
+    user = users[0]
+    is_owner = session.get("username") == user["username"]
+    posts = get_blog(user_id) or []
+
+    # Only the owner can see unpublished posts
+    if not is_owner:
+        posts = [post for post in posts if post["published"]]
+
+    # Newest posts first
+    posts.sort(key=lambda post: post["pid"], reverse=True)
+
+    # Contents may be saved as bytes in the database.
+    for post in posts:
+        if isinstance(post["contents"], bytes):
+            post["contents"] = post["contents"].decode("utf-8", errors="replace")
+
+    return render_template("profile.html", user=user, posts=posts, is_owner=is_owner)
+
 
 if __name__ == "__main__":
-    __reset()
     app.run(debug=True)
