@@ -73,3 +73,7 @@ wenjieM -- 2026-11-13
 efratH -- 2026-11-13
 	Testing branch
 	Successful add_user test
+
+
+wenjieM -- 2026-11-15
+	Added code for response.html and rendered it. Added create password in new_user.
