@@ -1,12 +1,13 @@
 from flask import Flask
 from flask import render_template
 from search import search
+from flask import session
 
 app = Flask(__name__)
 
 @app.route("/")
 def root():
-    return "Hello world"
+    return render_template("response.html", username = session.get("username"))
 
 @app.route("/login")
 def login():
