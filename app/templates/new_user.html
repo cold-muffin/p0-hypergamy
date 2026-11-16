@@ -15,7 +15,7 @@
     {% if error %}
       <p>{{ error }}</p>
     {% endif %}
-    <form action = "/new_user" method = "post">
+    <form action = "/create_user" method = "post">
       <p>
       <label for="username">Create username:</label>
       <input type="text" id="username" name="username" value="{{ username|default('', true) }}"placeholder="Username" required>

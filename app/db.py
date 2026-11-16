@@ -2,18 +2,18 @@ import sqlite3
 import copy
 
 dbpath = "db.db"
-db = sqlite3.connect(dbpath)
-c = db.cursor()
 
 def __reset():
     """Wipes the entire database file, creates the table.\nReturns nothing."""
+    db = sqlite3.connect(dbpath)
+    c = db.cursor()
     c.execute("DROP TABLE IF EXISTS users")
     c.execute("DROP TABLE IF EXISTS blog_posts")
     c.execute("CREATE TABLE users (uuid INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password BLOB)")
     c.execute("CREATE TABLE blog_posts (pid INTEGER PRIMARY KEY AUTOINCREMENT, owner INTEGER, title TEXT, contents BLOB, published INTEGER)")
     db.commit()
     
-def __turn_cursor_into_list(table:str):
+def __turn_cursor_into_list(table:str, c):
     header = ["uuid", "username", "password"] if table == "users" else ['pid', 'owner', 'title', 'contents', 'published']
     
     result = []
@@ -27,6 +27,8 @@ def __turn_cursor_into_list(table:str):
         
 def add_user(name:str, password=None):
     """Adds a new user to the database.\nReturns nothing.\n\nname -- username that the user is gonna have password -- the user's password, unencrypted. NOTE that at the moment, this function does not encrypt the password. Oops! (default=None)\n\ne.g. add_user("pig")\ne.g. add_user("john_dont", "pass123secret")"""
+    db = sqlite3.connect(dbpath)
+    c = db.cursor()
     if password:
         c.execute(f"INSERT INTO users (username, password) VALUES ('{name}', '{password}')")
     else:
@@ -34,6 +36,8 @@ def add_user(name:str, password=None):
     db.commit()
     
 def add_blog(owner:int, title:str, contents, published=False):
+    db = sqlite3.connect(dbpath)
+    c = db.cursor()
     title = title.replace("'", "''")
     """Adds a new blog post to the database.\nReturns nothing.\n\nowner (int) -- uuid of the blog post's owner\ntitle (str) -- title of the blog post\ncontents -- contents of the file, in whatever data\n* published (boolean) -- if the blog post is public or not (default=False)"""
     c.execute(f"INSERT INTO blog_posts (owner, title, contents, published) VALUES ({owner}, '{title}', {contents}, {1 if published else 0});")
@@ -50,11 +54,13 @@ def get_blog(key):
         
 def __get_user_or_blog(key, which:str):
     """get_user(-) and get_blog(-) are wrappers of this method.\n\nwhich -- which db you want. Only valid values are "users" or "blog_posts"."""
+    db = sqlite3.connect(dbpath)
+    c = db.cursor()
     try:
         # this line: decides which column names to use depending on the db u want.
         by = ('username' if type(key) == str else 'uuid') if which == "users" else ('title' if type(key) == str else 'owner')
         c.execute(f"SELECT * FROM {which} WHERE {by} = '{key}'")
-        d = __turn_cursor_into_list(which)
+        d = __turn_cursor_into_list(which, c)
         return d
     except:
         return None
