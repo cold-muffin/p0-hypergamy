@@ -77,3 +77,6 @@ efratH -- 2026-11-13
 
 wenjieM -- 2026-11-15
 	Added code for response.html and rendered it. Added create password in new_user.
+
+efratH -- 2026-11-16
+	Login and signup
