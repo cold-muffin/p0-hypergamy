@@ -7,7 +7,7 @@ from flask import redirect
 from flask import url_for
 
 from db import add_user, get_user, get_blog, setup_db
-from auth import auth
+from auth import auth, auth_signup
 
 app = Flask(__name__)
 app.secret_key = "dev"
@@ -22,6 +22,11 @@ def login():
     error = request.args.get('error')
     return render_template("login.html", error=error)
 
+@app.route("/logout", methods=["POST"])
+def logout():
+    session.pop("username")
+    return render_template("logout.html")
+
 @app.route("/auth", methods=["POST"])
 def authenticate():
     user = request.form.get("username")
@@ -32,19 +37,23 @@ def authenticate():
     if a[0]:
         session["username"] = user
         return redirect("/profile")
-    
+
     return redirect(url_for("login", error=a[1]))
 
 @app.route("/new_user")
 def new_user():
-    return render_template("new_user.html")
+    error = request.args.get("error")
+    return render_template("new_user.html", error=error)
 
 @app.route("/create_user", methods=["POST"])
 def create_user():
     user = request.form.get("username")
     password = request.form.get("password")
-    add_user(user, password)
-    return redirect("/login")
+    a = auth_signup(user, password)
+    if a[0]:
+        return redirect("/login")
+
+    return redirect(url_for("new_user", error=a[1]))
 
 @app.route("/search")
 def search_h():
