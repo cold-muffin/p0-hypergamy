@@ -4,8 +4,10 @@ from search import search
 from flask import session
 from flask import request
 from flask import redirect
+from flask import url_for
 
-from db import __reset, add_user, get_user
+from db import __reset, add_user
+from auth import auth
 
 app = Flask(__name__)
 app.secret_key = "dev"
@@ -16,18 +18,21 @@ def root():
 
 @app.route("/login")
 def login():
-    return render_template("login.html")
+    error = request.args.get('error')
+    return render_template("login.html", error=error)
 
 @app.route("/auth", methods=["POST"])
 def authenticate():
     user = request.form.get("username")
     password = request.form.get("password")
 
-    if get_user(user)[0]["password"] == password:
+    a = auth(user, password)
+    print(a)
+    if a[0]:
         session["username"] = user
         return redirect("/profile")
-
-    return "Failed"
+    
+    return redirect(url_for("login", error=a[1]))
 
 @app.route("/new_user")
 def new_user():
