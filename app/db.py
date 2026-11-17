@@ -75,6 +75,21 @@ def get_blog(key):
     if (type(key) == str):
         key = key.replace("'", "''")
     return __get_user_or_blog(key, "blog_posts")
+
+def get_blogs(user: str | int, start: int, end: int):
+    db = sqlite3.connect(dbpath)
+    c = db.cursor()
+
+    if isinstance(user, int):
+        uuid = user
+    elif isinstance(user, str):
+        u = get_user(user)
+        if u is None or len(u) == 0:
+            return []
+        uuid = u[0]["uuid"]
+    
+    c.execute(f"SELECT * FROM blog_posts WHERE owner = {uuid} LIMIT {end - start} OFFSET {start}")
+    return __turn_cursor_into_list("blog_posts", c)
         
 def __get_user_or_blog(key, which:str):
     """get_user(-) and get_blog(-) are wrappers of this method.
@@ -92,4 +107,5 @@ which -- "users" or "blog_posts"."""
         return None
 
 if __name__ == '__main__':
-    pass
+    from pprint import pp
+    pp(get_blogs("efrat", 5, 15))
