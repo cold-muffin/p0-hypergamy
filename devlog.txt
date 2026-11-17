@@ -103,3 +103,7 @@ Q: Features cut?
 - Yet to decide, will decide in meeting today
 Q: Which features need/deserve more airtime during demo?
 - Pagination and search
+
+efratH -- 2026-11-16
+	Integrated Wenjie's blog creation pages to backend
+	You can now create blog posts (and not edit other people's posts)

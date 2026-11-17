@@ -29,13 +29,13 @@
             <p>
                 <button type="submit" name="action" value="save">Save</button>
                 <button type="submit" name="action" value="save_exit">Save and Exit</button>
-                <a href="/profiles/{{ user['uuid'] }}">Cancel</a>
+                <a href="/profiles/{{ user.uuid. }}">Cancel</a>
             </p>
         </form>
     {% else %}
         <p>You can only edit posts on your own profile.</p>
         <p>
-            <a href="/profiles/{{ user['uuid'] }}">Back to Profile</a>
+            <a href="/profiles/{{ user.uuid }}">Back to Profile</a>
         </p>
     {% endif %}
 </body>
