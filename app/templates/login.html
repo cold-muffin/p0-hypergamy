@@ -3,9 +3,10 @@
 
 <head>
     <title> WeBlog | Log In </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
-<body>
+<body class="standalone-page narrow">
   <h1>
     Log In
   </h1>
@@ -13,7 +14,7 @@
         Welcome back! Please enter your username and password.
   </h3>
   {% if error %}
-    <p>{{ error }}</p>
+    <p class="error">{{ error }}</p>
   {% endif %}
 
     <form action="/auth" method="post">
@@ -28,8 +29,8 @@
       </p>
         <button type="submit">Log in</button>
     </form>
-    <p>
-        Don't have an account? <a href="/new_user">Sign up</a>
+    <p class="actions">
+    Don't have an account? <a class="button" href="/new_user">Sign up</a>
     </p>
 
     <br>

@@ -14,7 +14,7 @@ Returns nothing."""
     c.execute("CREATE TABLE users (uuid INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password BLOB)")
     c.execute("CREATE TABLE blog_posts (pid INTEGER PRIMARY KEY AUTOINCREMENT, owner INTEGER, title TEXT, contents BLOB, published INTEGER)")
     db.commit()
-    
+
 def setup_db():
     # Create tables only when missing, without deleting saved posts.
     db = sqlite3.connect(dbpath)
@@ -27,7 +27,7 @@ def setup_db():
 
 def __turn_cursor_into_list(table:str, c):
     header = ["uuid", "username", "password"] if table == "users" else ['pid', 'owner', 'title', 'contents', 'published']
-    
+
     result = []
     contents = [a for a in c]
     for user in contents:
@@ -36,7 +36,7 @@ def __turn_cursor_into_list(table:str, c):
             d[key] = user[i]
         result.append(copy.deepcopy(d))
     return result
-        
+
 def add_user(name:str, password=None):
     """Adds a new user to the database.
 Returns nothing.
@@ -53,7 +53,7 @@ e.g. add_user("john_dont", "pass123secret")"""
     else:
         c.execute(f"INSERT INTO users (username) VALUES ('{name}')")
     db.commit()
-    
+
 def add_blog(owner:int, title:str, contents, published=False):
     """Add a blog post to database"""
     db = sqlite3.connect(dbpath)
@@ -101,10 +101,10 @@ def get_blogs(user: str | int, start: int, end: int):
         if u is None or len(u) == 0:
             return []
         uuid = u[0]["uuid"]
-    
+
     c.execute(f"SELECT * FROM blog_posts WHERE owner = {uuid} LIMIT {end - start} OFFSET {start}")
     return __turn_cursor_into_list("blog_posts", c)
-        
+
 def __get_user_or_blog(key, which:str):
     """get_user(-) and get_blog(-) are wrappers of this method.
 
