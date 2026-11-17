@@ -24,7 +24,6 @@ def setup_db():
     db.commit()
     db.close()
 
-
 def turn_cursor_into_list(table:str, c):
     header = ["uuid", "username", "password"] if table == "users" else ['pid', 'owner', 'title', 'contents', 'published']
 
@@ -69,7 +68,7 @@ def get_user(key):
     """Gets user from the database.
 
 key -- either the uuid or username of the user."""
-    return __get_user_or_blog(key, "users")
+    return __get_user_or_blog(key, "%users%")
 
 def get_blog(key):
     if (type(key) == str):
@@ -114,7 +113,7 @@ which -- "users" or "blog_posts"."""
     try:
         # Choose which column to search.
         by = ('username' if type(key) == str else 'uuid') if which == "users" else ('title' if type(key) == str else 'owner')
-        c.execute(f"SELECT * FROM {which} WHERE {by} = '{key}'")
+        c.execute(f"SELECT * FROM {which} WHERE {by} LIKE '{key}'")
         d = turn_cursor_into_list(which, c)
         return d
     except:
