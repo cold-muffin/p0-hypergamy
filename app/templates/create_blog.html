@@ -13,14 +13,15 @@
         <p>{{ message }}</p>
     {% endif %}
     {% if is_owner %}
-        <form method="post">
+        <form method="post" action="/publish_post" method="post">
+            <input type="hidden" name="uuid" value="{{ user.uuid }}">
             <p>
                 <label for="title">Title:</label><br>
-                <input type="text" id="title" name="title" required>
+                <input type="text" id="title" name="title" value="title" required>
             </p>         
             <p>
                 <label for="contents">Contents:</label><br>
-                <textarea id="contents" name="contents" rows="10" cols="50" required></textarea>
+                <textarea id="contents" name="contents" rows="10" cols="50" value="contents" required></textarea>
             </p>
             <p>
                 <input type="checkbox" id="published" name="published" value="1">
@@ -32,13 +33,13 @@
             <p>
                 <button type="submit" name="action" value="save">Save</button>
                 <button type="submit" name="action" value="save_exit">Save and Exit</button>
-                <a href="{{ url_for('view_profile', user_id=user['uuid']) }}">Cancel</a>
+                <a href="{{ url_for('view_profile', user_id=user.uuid) }}">Cancel</a>
             </p>
         </form>
     {% else %}
         <p>You can only create posts on your own profile.</p>
         <p>
-            <a href="/profiles/{{ user['uuid'] }}/create/new">Back to Profile</a>
+            <a href="/profiles/{{ user.uuid }}">Back to Profile</a>
         </p>
     {% endif %}
 </body>

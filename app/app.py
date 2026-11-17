@@ -6,7 +6,7 @@ from flask import request
 from flask import redirect
 from flask import url_for
 
-from db import add_user, get_user, get_blog, setup_db
+from db import add_user, get_user, get_blog, setup_db, add_blog
 from auth import auth, auth_signup
 
 app = Flask(__name__)
@@ -96,6 +96,45 @@ def view_profile(user_id):
             post["contents"] = post["contents"].decode("utf-8", errors="replace")
 
     return render_template("profile.html", user=user, posts=posts, is_owner=is_owner)
+
+@app.route("/profiles/<int:user_id>/edit/new")
+def create_post(user_id):
+    users = get_user(user_id)
+    if users is None or len(users) == 0:
+        return "User does not exist"
+    user = users[0]
+    is_owner = session["username"] == user["username"]
+    return render_template("create_blog.html", user=user, is_owner=is_owner)
+
+@app.route("/publish_post", methods=["POST"])
+def publish_post():
+    # uuid parsing
+    uuid = request.form.get("uuid")
+    if uuid is None:
+        return redirect(url_for("profile", error="USERNOTFOUND"))
+    uuid = int(uuid)
+
+    # title parsing
+    title = request.form.get("title")
+    if title is None:
+        return redirect(url_for("profile", error="NOTITLE"))
+        
+    # contents parsing
+    contents = request.form.get("contents")
+
+    # published parsing
+    published = request.form.get("published")
+    published = False if published is None else bool(int(published))
+
+    # action parsing
+    action = request.form.get("action")
+    if action is None:
+        return redirect(url_for("profile", error="EARLYEXIT"))
+
+    add_blog(uuid, title, contents, published)
+
+    print(request.form)
+    return redirect(url_for("profile"))
 
 
 if __name__ == "__main__":
