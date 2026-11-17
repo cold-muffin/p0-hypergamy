@@ -80,3 +80,6 @@ wenjieM -- 2026-11-15
 
 efratH -- 2026-11-16
 	Login and signup
+
+leonW -- 2026-11-16
+	Added blog viewing mechanism
