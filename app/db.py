@@ -25,7 +25,7 @@ def setup_db():
     db.close()
 
 
-def __turn_cursor_into_list(table:str, c):
+def turn_cursor_into_list(table:str, c):
     header = ["uuid", "username", "password"] if table == "users" else ['pid', 'owner', 'title', 'contents', 'published']
 
     result = []
@@ -81,7 +81,7 @@ def get_blog_by_pid(pid: int) -> dict:
     db = sqlite3.connect(dbpath)
     c = db.cursor()
     c.execute(f"SELECT * FROM blog_posts WHERE pid = {pid}")
-    return __turn_cursor_into_list("blog_posts", c)[0]
+    return turn_cursor_into_list("blog_posts", c)[0]
 
 def edit_blog(pid: int, title: str, contents, published):
     db = sqlite3.connect(dbpath)
@@ -103,7 +103,7 @@ def get_blogs(user: str | int, start: int, end: int):
         uuid = u[0]["uuid"]
 
     c.execute(f"SELECT * FROM blog_posts WHERE owner = {uuid} LIMIT {end - start} OFFSET {start}")
-    return __turn_cursor_into_list("blog_posts", c)
+    return turn_cursor_into_list("blog_posts", c)
 
 def __get_user_or_blog(key, which:str):
     """get_user(-) and get_blog(-) are wrappers of this method.
@@ -115,7 +115,7 @@ which -- "users" or "blog_posts"."""
         # Choose which column to search.
         by = ('username' if type(key) == str else 'uuid') if which == "users" else ('title' if type(key) == str else 'owner')
         c.execute(f"SELECT * FROM {which} WHERE {by} = '{key}'")
-        d = __turn_cursor_into_list(which, c)
+        d = turn_cursor_into_list(which, c)
         return d
     except:
         return None
