@@ -76,6 +76,20 @@ def get_blog(key):
         key = key.replace("'", "''")
     return __get_user_or_blog(key, "blog_posts")
 
+def get_blog_by_pid(pid: int) -> dict:
+    """IMPORTANT DOES NOT RETURN A LIST BECAUSE PID ARE PRIMARY KEY"""
+    db = sqlite3.connect(dbpath)
+    c = db.cursor()
+    c.execute(f"SELECT * FROM blog_posts WHERE pid = {pid}")
+    return __turn_cursor_into_list("blog_posts", c)[0]
+
+def edit_blog(pid: int, title: str, contents, published):
+    db = sqlite3.connect(dbpath)
+    c = db.cursor()
+    c.execute(f'UPDATE blog_posts SET title = "{title}", contents = "{contents}", published = {published} WHERE pid = {pid}')
+    db.commit()
+    db.close()
+
 def get_blogs(user: str | int, start: int, end: int):
     db = sqlite3.connect(dbpath)
     c = db.cursor()

@@ -13,7 +13,7 @@
         <p>{{ message }}</p>
     {% endif %}
     {% if is_owner %}
-        <form method="post" action="/publish_post" method="post">
+        <form method="post" action="/publish_post">
             <input type="hidden" name="uuid" value="{{ user.uuid }}">
             <p>
                 <label for="title">Title:</label><br>

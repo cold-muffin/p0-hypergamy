@@ -6,7 +6,7 @@ from flask import request
 from flask import redirect
 from flask import url_for
 
-from db import add_user, get_user, get_blog, setup_db, add_blog
+from db import add_user, get_user, get_blog, setup_db, add_blog, get_blog_by_pid, edit_blog
 from auth import auth, auth_signup
 
 app = Flask(__name__)
@@ -105,6 +105,46 @@ def create_post(user_id):
     user = users[0]
     is_owner = session["username"] == user["username"]
     return render_template("create_blog.html", user=user, is_owner=is_owner)
+
+@app.route("/profiles/<int:user_id>/edit/<int:pid>")
+def edit_post(user_id: int, pid: int):
+    blog = get_blog_by_pid(pid)
+    print(blog)
+
+    users = get_user(user_id)
+    if users is None or len(users) == 0:
+        return "User does not exist"
+    user = users[0]
+    is_owner = session["username"] == user["username"]
+    return render_template("edit_blog.html", user=user, is_owner=is_owner, post=blog)
+
+@app.route("/publish_edit", methods=["POST"])
+def publish_edit():
+    # pid parsing
+    pid = request.form.get("pid")
+    if pid is None:
+        return redirect(url_for("profile", error="POSTNOTFOUND"))
+    pid = int(pid)
+
+    # title parsing
+    title = request.form.get("title")
+    if title is None:
+        return redirect(url_for("profile", error="NOTITLE"))
+
+    # contents parsing
+    contents = request.form.get("contents")
+
+    # published parsing
+    published = request.form.get("published")
+    published = False if published is None else bool(int(published))
+
+    # action parsing
+    action = request.form.get("action")
+    if action is None:
+        return redirect(url_for("profile", error="EARLYEXIT"))
+
+    edit_blog(pid, title, contents, published)
+    return redirect(url_for("profile"))
 
 @app.route("/publish_post", methods=["POST"])
 def publish_post():
