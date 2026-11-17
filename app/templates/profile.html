@@ -3,13 +3,14 @@
 <html>
 <head>
     <title>WeBlog | Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
-<body>
+<body class="standalone-page profile-page">
     <h1>{{ user.username }}'s Profile</h1>
 
-    <a href="/">Home</a>
-    <a href="/search">Search</a>
+    <a class="button profile-nav-link" href="/">Home</a>
+    <a class="button profile-nav-link" href="/search">Search</a>
 
     {% if error %}
         <p>{{ error }}</p>
@@ -18,17 +19,18 @@
     <h2>Blog Posts</h2>
 
     {% for post in posts %}
-        <h3>{{ post.title }}</h3>
-        <p>{{ post.contents }}</p>
+        <h3 class="post-title">{{ post.title }}</h3>
+        <p class="post-text">{{ post.contents }}</p>
 
         {% if post.published %}
-            <p>Published</p>
+            <p class="post-status">Published</p>
         {% else %}
-            <p>Unpublished</p>
+            <p class="post-status unpublished">Unpublished</p>
         {% endif %}
 
         {% if is_owner %}
-            <a href="/profiles/{{ user.uuid }}/edit/{{ post.pid }}">Edit Post</a>
+            <a class="button post-action"
+                href="/profiles/{{ user.uuid }}/edit/{{ post.pid }}">Edit Post</a>
         {% endif %}
 
         <hr>
@@ -37,7 +39,8 @@
     {% endfor %}
 
     {% if is_owner %}
-        <a href="/profiles/{{ user.uuid }}/edit/new">Create New Post</a>
+        <a class="button"
+            href="/profiles/{{ user.uuid }}/edit/new">Create New Post</a>
     {% endif %}
 
 </body>
