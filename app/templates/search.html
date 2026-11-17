@@ -31,7 +31,7 @@
             <ul>
                 {% for user in results %}
                     <li>
-                        <a href="/profiles/{{ user['user_id'] }}">
+                        <a href="{{ url_for('view_profile', user_id=user['uuid']) }}">
                             {{ user['username'] }}
                         </a>
                     </li>

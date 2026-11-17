@@ -66,3 +66,44 @@ marcosL -- 2026-11-13 15:23
 
 wenjieM -- 2026-11-13
 	Added search.py and applied jinja
+
+wenjieM -- 2026-11-13
+	Added logout and response html
+
+efratH -- 2026-11-13
+	Testing branch
+	Successful add_user test
+
+
+wenjieM -- 2026-11-15
+	Added code for response.html and rendered it. Added create password in new_user.
+
+efratH -- 2026-11-16
+	Login and signup
+
+leonW -- 2026-11-16
+	Added blog viewing mechanism
+
+wenjieM -- 2026-11-16
+	Added create_blog.html & edit_blog.html and fixed search.
+
+efratH -- 2026-11-16
+	Added pagination function and fixed login and signup issues
+
+HOME STRETCH CHECKLIST
+Q: How familiar is each teammate with entirety of codebase?
+- Most familiar with their own sections but otherwise familiar
+Q: Does it work?
+- MVP works with little bugs
+Q: Does it fail gracefully?
+- Yet to check to fullest extent all bugs
+Q: Can you predict Q/C/C at demotime?
+- No, have to think about
+Q: Features cut?
+- Yet to decide, will decide in meeting today
+Q: Which features need/deserve more airtime during demo?
+- Pagination and search
+
+efratH -- 2026-11-16
+	Integrated Wenjie's blog creation pages to backend
+	You can now create blog posts (and not edit other people's posts)

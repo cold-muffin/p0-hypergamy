@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WeBlog | Edit Blogs </title>
+</head>
+<body>
+  <h1> Edit a Blog Post</h1>
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+
+    {% if is_owner %}
+        <form action="/publish_edit" method="post">
+            <input type="hidden" name="pid" value="{{ post.pid }}">
+            <p>
+            <label for="title">Title:</label><br>
+            <input type="text" id="title" name="title" value="{{ post.title }}" required>
+            </p>         
+            <p>
+                <label for="contents">Contents:</label><br>
+                <textarea id="contents" name="contents" rows="10" cols="50" required> {{ post['contents'] }}</textarea>
+            </p>
+            <p>
+                <input type="checkbox" id="published" name="published" value="1">
+                <label for="published">
+                  Publish this post
+                </label>
+            </p>
+            <p>Leave unchecked to save as a draft.</p>
+            <p>
+                <button type="submit" name="action" value="save">Save</button>
+                <button type="submit" name="action" value="save_exit">Save and Exit</button>
+                <a href="/profiles/{{ user.uuid }}">Cancel</a>
+            </p>
+        </form>
+    {% else %}
+        <p>You can only edit posts on your own profile.</p>
+        <p>
+            <a href="/profiles/{{ user.uuid }}">Back to Profile</a>
+        </p>
+    {% endif %}
+</body>
+</html>

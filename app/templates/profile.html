@@ -11,6 +11,10 @@
     <a href="/">Home</a>
     <a href="/search">Search</a>
 
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+
     <h2>Blog Posts</h2>
 
     {% for post in posts %}
@@ -23,17 +27,18 @@
             <p>Unpublished</p>
         {% endif %}
 
-        <a href="/profiles/{{ user.uuid }}/edit/{{ post.pid }}">
-            Edit Post
-        </a>
+        {% if is_owner %}
+            <a href="/profiles/{{ user.uuid }}/edit/{{ post.pid }}">Edit Post</a>
+        {% endif %}
 
         <hr>
+    {% else %}
+        <p>No blog posts yet.</p>
     {% endfor %}
 
-    <a href="/profiles/{{ user.uuid }}/edit/new">
-        Create New Post
-    </a>
+    {% if is_owner %}
+        <a href="/profiles/{{ user.uuid }}/edit/new">Create New Post</a>
+    {% endif %}
 
 </body>
 </html>
-

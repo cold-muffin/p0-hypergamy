@@ -16,7 +16,7 @@
     <p>{{ error }}</p>
   {% endif %}
 
-    <form action="/login" method="post">
+    <form action="/auth" method="post">
       <p>
       <label for="username">Username:</label>
       <input type="text" id="username" name="username" value="{{ username|default('', true) }}"placeholder="Username" required>
