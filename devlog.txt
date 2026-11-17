@@ -83,3 +83,7 @@ efratH -- 2026-11-16
 
 leonW -- 2026-11-16
 	Added blog viewing mechanism
+
+wenjieM -- 2026-11-16
+	Added create_blog.html & edit_blog.html and fixed search.
+	
