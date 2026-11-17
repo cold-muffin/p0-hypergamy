@@ -2,11 +2,13 @@
 <html>
 <head>
   <title>WeBlog | Create Blogs </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
+<body class="standalone-page post-editor">
   <h1> Create a Blog Post</h1>
     {% if error %}
-        <p>{{ error }}</p>
+        <p class="error">{{ error }}</p>
     {% endif %}
 
     {% if message %}
@@ -23,17 +25,17 @@
                 <label for="contents">Contents:</label><br>
                 <textarea id="contents" name="contents" rows="10" cols="50" value="contents" required></textarea>
             </p>
-            <p>
+            <p class="checkbox-row">
                 <input type="checkbox" id="published" name="published" value="1">
                 <label for="published">
-                  Publish this post
+                    Publish this post
                 </label>
             </p>
-            <p>Leave unchecked to save as a draft.</p>
-            <p>
+            <p class="intro">Leave unchecked to save as a draft.</p>
+            <p class="actions">
                 <button type="submit" name="action" value="save">Save</button>
                 <button type="submit" name="action" value="save_exit">Save and Exit</button>
-                <a href="{{ url_for('view_profile', user_id=user.uuid) }}">Cancel</a>
+                <a href="{{ url_for('view_profile', user_id=user['uuid']) }}">Cancel</a>
             </p>
         </form>
     {% else %}

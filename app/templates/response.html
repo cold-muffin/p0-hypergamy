@@ -2,8 +2,9 @@
 <html>
 <head>
   <title>WeBlog | Home </title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
+<body class="standalone-page">
   {% if username %}
     <h1>Welcome, {{ username }}! </h1>
     <p> 
@@ -19,11 +20,11 @@
     <p> 
       You are not logged in.
     </p>
-    <p>
-      <a href="/login">Log in</a>
-      <br>
-      <a href="/new_user">Sign up</a>
-    </p>
+    <p class="actions home-links">
+    <a class="button" href="/login">Log in</a>
+    <br>
+    <a class="button" href="/new_user">Sign up</a>
+</p>
   {% endif %}
 </body>
 </html>
