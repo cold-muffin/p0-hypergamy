@@ -5,16 +5,13 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body class="standalone-page">
+  {% include "navbar.html" %}
+  <br>
   {% if username %}
     <h1>Welcome, {{ username }}! </h1>
     <p> 
-      You are logged in.
+      Go to My Profile to create or edit an blog post!
     </p>
-    
-    <form action="/logout" method="post">
-      <button>Log out</button>
-    </form>
-
   {% else %}
     <h1>Welcome to WeBlog!</h1>
     <p> 
