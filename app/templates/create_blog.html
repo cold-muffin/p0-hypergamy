@@ -13,7 +13,7 @@
         <p class="error">{{ error }}</p>
     {% endif %}
 
-    {% if is_owner %}
+    {% if is_owner %}   
         <form method="post" action="/publish_post">
             <input type="hidden" name="uuid" value="{{ user.uuid }}">
             <p>
@@ -24,15 +24,9 @@
                 <label for="contents">Contents:</label><br>
                 <textarea id="contents" name="contents" rows="10" cols="50" value="contents" maxlength="4096" required></textarea>
             </p>
-            <p class="checkbox-row">
-                <input type="checkbox" id="published" name="published" value="1">
-                <label for="published">
-                    Publish this post
-                </label>
-            </p>
-            <p class="intro">Leave unchecked to save as a draft.</p>
             <p class="actions">
-                <button type="submit" name="action" value="save_exit">Save and Exit</button>
+                <button type="submit" name="action" value="save">Save as draft</button>
+                <button type="submit" name="action" value="publish">Publish and exit</button>
                 <a href="{{ url_for('view_profile', user_id=user['uuid']) }}">Cancel</a>
             </p>
         </form>
