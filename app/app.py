@@ -6,7 +6,7 @@ from flask import request
 from flask import redirect
 from flask import url_for
 
-from db import add_user, get_user, get_blog, setup_db, add_blog, get_blog_by_pid, edit_blog, count_likes, like_post
+from db import get_user, get_blog, setup_db, add_blog, get_blog_by_pid, edit_blog, count_likes, like_post
 from auth import auth, auth_signup
 
 app = Flask(__name__)
