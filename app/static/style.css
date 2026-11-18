@@ -1,3 +1,4 @@
+/* I stole this from tumblr */
 @font-face {
     font-family: Favorit;
     src: local("Favorit"), local("ABC Favorit"), url("https://assets.tumblr.com/pop/src/assets/fonts/favorit/favorit-85-cf2f6136.woff2") format("woff2");
@@ -17,6 +18,12 @@ body {
     color: #172337;
     font-family: Favorit, "Helvetica Neue", Helvetica, Arial, sans-serif;
     line-height: 1.55;
+    width: calc(100% - 2rem);
+    max-width: 42rem;
+    margin: 0 auto;
+    padding: 2.5rem 0 3rem;
+    color: #ffffff;
+    overflow-wrap: anywhere;
 }
 
 h1, h2, h3 {
@@ -85,40 +92,31 @@ button:hover, .button:hover {
     border-left: 3px solid #bd4657;
 }
 
-/* Standalone pages */
-.standalone-page, .search-page {
-    width: calc(100% - 2rem);
-    max-width: 42rem;
-    margin: 0 auto;
-    padding: 2.5rem 0 3rem;
-    color: #ffffff;
-    overflow-wrap: anywhere;
-}
 
-.standalone-page h3, .search-page h3 {
+h3 {
     margin-top: 0.5rem;
     color: #c8d6e5;
     font-weight: 400;
 }
 
-.standalone-page form, .search-page form {
+form {
     margin-top: 1.5rem;
 }
 
-.standalone-page label, .search-page label {
+label {
     display: block;
     margin-bottom: 0.35rem;
 }
 
-.standalone-page button, .search-page button {
+button {
     margin-top: 0.75rem;
 }
 
-.standalone-page .actions button {
+.actions button {
     margin-top: 0;
 }
 
-.standalone-page a:not(.button), .search-page a:not(.button) {
+a {
     color: #8fd4ff;
 }
 
@@ -139,7 +137,7 @@ button:hover, .button:hover {
 }
 
 /* Blog posts */
-.standalone-page .post-title {
+.profile-page h3 {
     margin-top: 1rem;
     color: #ffffff;
     font-weight: 700;
@@ -178,7 +176,7 @@ button:hover, .button:hover {
     margin-top: 0.25rem;
 }
 
-.icon-small {
+.icon-button img {
     width: 1.5rem;
     height: 1.5rem;
 }
@@ -195,7 +193,7 @@ button:hover, .button:hover {
     align-items: center;
 }
 
-.navbar {
+nav {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -205,7 +203,7 @@ button:hover, .button:hover {
     background: #002b50;
 }
 
-.navbar a.nav-link {
+nav a {
     display: inline-block;
     padding: 0.5rem 0.75rem;
     color: #ffffff;
@@ -214,6 +212,6 @@ button:hover, .button:hover {
     border-radius: 4px;
 }
 
-.navbar a.nav-link:hover {
+nav a:hover {
     background: #004575;
 }

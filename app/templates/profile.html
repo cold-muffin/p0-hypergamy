@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
-<body class="standalone-page profile-page">
+<body class="profile-page">
     {% include "navbar.html" %}
     <br>
     <h1>{{ user.username }}'s Profile</h1>
@@ -18,7 +18,7 @@
 
     {% for post in posts %}
         <div id="post-{{ post.pid }}">
-            <h3 class="post-title">{{ post.title }}</h3>
+            <h3>{{ post.title }}</h3>
             <p class="post-text">{{ post.contents }}</p>
 
             {% if post.published %}
@@ -30,10 +30,10 @@
             <div class="like-pair">
                 <form action="{{ url_for('toggle_like', pid=post.pid, op=user.uuid) }}" method="post">
                     <button type="submit" class="icon-button">
-                        <img src="/static/empty_like.svg" class="icon-small">
+                        <img src="/static/empty_like.svg">
                     </button>
                 </form>
-                <p class="like-text">{{ post.likes }}</p>
+                <p>{{ post.likes }}</p>
                 {% if is_owner %}
                     <a class="button post-action" style="margin-left: .5rem;"
                         href="/profiles/{{ user.uuid }}/edit/{{ post.pid }}">Edit Post</a>
