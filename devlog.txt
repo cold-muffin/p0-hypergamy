@@ -121,4 +121,8 @@ efratH -- 2026-11-17
 	Added likes (and subsequent tables and db interactions)
 	Fixed CSS for navbar and like button
 	Fixed serve.py
+
+leonW - 2026-11-18
+	Finished navbar CSS 
+	Removed no-longer-needed CSS classes
 	
