@@ -33,13 +33,12 @@
                         <img src="/static/empty_like.svg" class="icon-small">
                     </button>
                 </form>
-                <p>{{ post.likes }}</p>
+                <p class="like-text">{{ post.likes }}</p>
+                {% if is_owner %}
+                    <a class="button post-action" style="margin-left: .5rem;"
+                        href="/profiles/{{ user.uuid }}/edit/{{ post.pid }}">Edit Post</a>
+                {% endif %}
             </div>
-
-            {% if is_owner %}
-                <a class="button post-action"
-                    href="/profiles/{{ user.uuid }}/edit/{{ post.pid }}">Edit Post</a>
-            {% endif %}
         </div>
 
         <hr>

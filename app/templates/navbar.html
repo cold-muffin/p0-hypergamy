@@ -1,14 +1,18 @@
-<nav style="display: flex; align-items: center; gap: 8px;">
+<nav class="navbar">
+    <h1 style="margin-right: 1rem;">bumblr.</h1>
     <a href="/">Home</a> |
     <a href="/search">Search</a>
     {% if "username" in session %}
         <a href="/profile">My Profile</a>
         <a href="/profile?action=create">Create Blog</a>
-        <form action="/logout" method="post" style = "margin: 0 0 0 auto"; width: auto;>
-            <button type="submit" style = "width: auto;">Log out</button>
+        <form action="/logout" method="post" style = "margin: 0 0 0 auto; width: auto;">
+            <button type="submit" style = "width: auto; margin: 0;">Log out</button>
         </form>
     {% else %}
         <a href="/login">Log in</a>
         <a href="/new_user">Sign up</a>
     {% endif %}
 </nav>
+<br>
+<br>
+<br>
