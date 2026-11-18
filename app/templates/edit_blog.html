@@ -4,8 +4,10 @@
   <title>WeBlog | Edit Blogs </title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body class="standalone-page post-editor">
-  <h1> Edit a Blog Post</h1>
+<body class="standalone-page editpost">
+    {% include "navbar.html" %}
+    <br>
+  <h1> Edit Blog Post</h1>
     {% if error %}
         <p class="error">{{ error }}</p>
     {% endif %}

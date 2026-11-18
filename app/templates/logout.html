@@ -4,8 +4,11 @@
   <title>Logout</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body class="standalone-page narrow">
+<body class="standalone-page">
+  {% include "navbar.html" %}
+  <br>
   <h1>You are logged out.</h1>
-  <a href="/login">Return to login</a>
+
 </body>
+
 </html>
