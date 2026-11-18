@@ -13,6 +13,7 @@ Returns nothing."""
     c.execute("DROP TABLE IF EXISTS blog_posts")
     c.execute("CREATE TABLE users (uuid INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password BLOB)")
     c.execute("CREATE TABLE blog_posts (pid INTEGER PRIMARY KEY AUTOINCREMENT, owner INTEGER, title TEXT, contents BLOB, published INTEGER)")
+    c.execute("CREATE TABLE user_likes (id INTEGER PRIMARY KEY AUTOINCREMENT, uuid INTEGER, pid INTEGER)")
     db.commit()
 
 def setup_db():
@@ -21,9 +22,27 @@ def setup_db():
     c = db.cursor()
     c.execute("CREATE TABLE IF NOT EXISTS users (uuid INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password BLOB)")
     c.execute("CREATE TABLE IF NOT EXISTS blog_posts (pid INTEGER PRIMARY KEY AUTOINCREMENT, owner INTEGER, title TEXT, contents BLOB, published INTEGER)")
+    c.execute("CREATE TABLE IF NOT EXISTS user_likes (id INTEGER PRIMARY KEY AUTOINCREMENT, uuid INTEGER, pid INTEGER)")
     db.commit()
     db.close()
 
+def _check_liked(c, uuid: int, pid: int):
+    c.execute(f"SELECT EXISTS(SELECT 1 FROM user_likes WHERE uuid = {uuid} AND pid = {pid});")
+    return c.fetchone()[0] != 0
+
+def like_post(uuid: int, pid: int):
+    db = sqlite3.connect(dbpath)
+    c = db.cursor()
+    if _check_liked(c, uuid, pid):
+        c.execute(f"DELETE FROM user_likes WHERE uuid = {uuid} AND pid = {pid};")
+        r = 0
+    else:
+        c.execute(f"INSERT INTO user_likes (uuid, pid) VALUES (1, 22)")
+        r = 1
+    db.commit()
+    db.close()
+    return r
+    
 
 def __turn_cursor_into_list(table:str, c):
     header = ["uuid", "username", "password"] if table == "users" else ['pid', 'owner', 'title', 'contents', 'published']
@@ -121,5 +140,7 @@ which -- "users" or "blog_posts"."""
         return None
 
 if __name__ == '__main__':
-    from pprint import pp
-    pp(get_blogs("efrat", 5, 15))
+    print(like_post(1, 22))
+    print(like_post(1, 22))
+    print(like_post(1, 22))
+    print(like_post(1, 22))
