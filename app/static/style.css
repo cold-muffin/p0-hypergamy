@@ -19,18 +19,6 @@ body {
     line-height: 1.55;
 }
 
-.page {
-    width: calc(100% - 2rem);
-    max-width: 42rem;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 1.5rem;
-    margin-bottom: 3rem;
-    display: grid;
-    gap: 1rem;
-    overflow-wrap: anywhere;
-}
-
 h1, h2, h3 {
     margin: 0;
     line-height: 1.2;
@@ -58,15 +46,6 @@ textarea {
     display: block;
     min-height: 12rem;
     resize: vertical;
-}
-
-.checkbox-row {
-    margin-bottom: 0.4rem;
-}
-
-.checkbox-row input {
-    margin: 0 0.4rem 0 0;
-    accent-color: #0065a8;
 }
 
 button, .button {
@@ -99,10 +78,6 @@ button:hover, .button:hover {
     margin-top: 1.25rem;
 }
 
-.home-links br {
-    display: none;
-}
-
 .error {
     padding: 0.7rem 0.85rem;
     color: #8f2336;
@@ -120,10 +95,6 @@ button:hover, .button:hover {
     overflow-wrap: anywhere;
 }
 
-.standalone-page.narrow {
-    max-width: 29rem;
-}
-
 .standalone-page h3, .search-page h3 {
     margin-top: 0.5rem;
     color: #c8d6e5;
@@ -139,14 +110,6 @@ button:hover, .button:hover {
     margin-bottom: 0.35rem;
 }
 
-.standalone-page .checkbox-row label {
-    display: inline;
-}
-
-.post-editor label + br {
-    display: none;
-}
-
 .standalone-page button, .search-page button {
     margin-top: 0.75rem;
 }
@@ -157,10 +120,6 @@ button:hover, .button:hover {
 
 .standalone-page a:not(.button), .search-page a:not(.button) {
     color: #8fd4ff;
-}
-
-.standalone-page .intro {
-    color: #c8d6e5;
 }
 
 /* Search results */
@@ -180,11 +139,6 @@ button:hover, .button:hover {
 }
 
 /* Blog posts */
-.profile-nav-link {
-    display: inline-block;
-    margin: 0.75rem 0.75rem 0.75rem 0;
-}
-
 .standalone-page .post-title {
     margin-top: 1rem;
     color: #ffffff;
@@ -222,13 +176,6 @@ button:hover, .button:hover {
 .post-action {
     display: inline-block;
     margin-top: 0.25rem;
-}
-
-@media (min-width: 34rem) {
-    .search-form {
-        grid-template-columns: 1fr auto;
-        align-items: end;
-    }
 }
 
 .icon-small {
@@ -269,33 +216,4 @@ button:hover, .button:hover {
 
 .navbar a.nav-link:hover {
     background: #004575;
-}
-
-.navbar .nav-logout {
-    margin: 0 0 0 auto;
-    width: auto;
-}
-
-.navbar .nav-logout button {
-    margin: 0;
-    padding: 0.5rem 0.75rem;
-    color: #ffffff;
-    background: transparent;
-    border: 1px solid #8492ae;
-    border-radius: 4px;
-}
-
-.navbar .nav-logout button:hover {
-    background: #004575;
-    border-color: #ffffff;
-}
-
-@media (max-width: 480px) {
-    .navbar {
-        gap: 0.25rem;
-    }
-
-    .navbar a.nav-link {
-        padding: 0.4rem 0.5rem;
-    }
 }
