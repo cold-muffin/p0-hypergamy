@@ -22,12 +22,13 @@ def login():
     error = request.args.get('error')
     return render_template("login.html", error=error)
 
-@app.route("/logout", methods=["POST"])
+@app.route("/logout", methods=["GET", "POST"])
 def logout():
-    session.pop("username")
+    if "username" in session:
+        session.pop("username")
     return render_template("logout.html")
 
-@app.route("/auth", methods=["POST"])
+@app.route("/auth", methods=["GET", "POST"])
 def authenticate():
     user = request.form.get("username")
     password = request.form.get("password")
@@ -45,7 +46,7 @@ def new_user():
     error = request.args.get("error")
     return render_template("new_user.html", error=error)
 
-@app.route("/create_user", methods=["POST"])
+@app.route("/create_user", methods=["GET", "POST"])
 def create_user():
     user = request.form.get("username")
     password = request.form.get("password")
@@ -103,7 +104,13 @@ def create_post(user_id):
     if users is None or len(users) == 0:
         return "User does not exist"
     user = users[0]
-    is_owner = session["username"] == user["username"]
+
+    # redirect to login if not logged in
+    if "username" in session:
+        is_owner = session["username"] == user["username"]
+    else:
+        return redirect(url_for("login"))
+
     return render_template("create_blog.html", user=user, is_owner=is_owner)
 
 @app.route("/profiles/<int:user_id>/edit/<int:pid>")
@@ -115,10 +122,16 @@ def edit_post(user_id: int, pid: int):
     if users is None or len(users) == 0:
         return "User does not exist"
     user = users[0]
-    is_owner = session["username"] == user["username"]
+
+    # redirect to login if not logged in
+    if "username" in session:
+        is_owner = session["username"] == user["username"]
+    else:
+        return redirect(url_for("login"))
+
     return render_template("edit_blog.html", user=user, is_owner=is_owner, post=blog)
 
-@app.route("/publish_edit", methods=["POST"])
+@app.route("/publish_edit", methods=["GET", "POST"])
 def publish_edit():
     # pid parsing
     pid = request.form.get("pid")
@@ -146,7 +159,7 @@ def publish_edit():
     edit_blog(pid, title, contents, published)
     return redirect(url_for("profile"))
 
-@app.route("/publish_post", methods=["POST"])
+@app.route("/publish_post", methods=["GET", "POST"])
 def publish_post():
     # uuid parsing
     uuid = request.form.get("uuid")
