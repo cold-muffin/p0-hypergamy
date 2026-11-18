@@ -143,6 +143,18 @@ which -- "users" or "blog_posts"."""
         return d
     except:
         return None
+    
+def select(table:str, query:str):
+    """Runs the SQLite3 query on the cursor exactly, returns a list of dictionaries based on what is selected.
+    This function exists if something more specific needs to be done.
+    Note that this query must be a SELECT query for it to work properly.
+    query -- The SQLite3 query.
+    table -- The table you are acting upon.
+    """
+    db = sqlite3.connect(dbpath)
+    c = db.cursor()
+    c.execute(query)
+    return __turn_cursor_into_list(table, c)
 
 if __name__ == '__main__':
     print(like_post(1, 22))
