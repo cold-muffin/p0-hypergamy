@@ -113,3 +113,7 @@ leonW - 2026-11-17
 
 marcosL -- 2026-11-17 23:15
 	Made search more lenient. All usernames that contain the query as a substring will show up.
+
+wenjieM -- 2026-11-17 
+	Removed redundant code and fixed a lot of bugs. Added navbar
+	
