@@ -6,7 +6,7 @@ from flask import request
 from flask import redirect
 from flask import url_for
 
-from db import add_user, get_user, get_blog, setup_db, add_blog, get_blog_by_pid, edit_blog
+from db import add_user, get_user, get_blog, setup_db, add_blog, get_blog_by_pid, edit_blog, count_likes, like_post
 from auth import auth, auth_signup
 
 app = Flask(__name__)
@@ -98,6 +98,9 @@ def view_profile(user_id):
     for post in posts:
         if isinstance(post["contents"], bytes):
             post["contents"] = post["contents"].decode("utf-8", errors="replace")
+    
+    for post in posts:
+        post["likes"] = count_likes(post["pid"])
 
     return render_template("profile.html", user=user, posts=posts, is_owner=is_owner)
 
@@ -193,10 +196,27 @@ def publish_post():
     return redirect(url_for("profile"))
 
 @app.route("/toggle_like", methods=["GET", "POST"])
-def like_post():
+def toggle_like():
     pid = request.args.get("pid")
-    uuid = request.args.get("uuid")
-    return redirect(url_for("view_profile", user_id=uuid, _anchor=f"post-{pid}"))
+    if pid is None:
+        return redirect(url_for("login"))
+    pid = int(pid)
+
+    op = request.args.get("op")
+    if op is None:
+        return redirect(url_for("login"))
+    op = int(op)
+
+
+    if "username" not in session:
+        return redirect(url_for("login"))
+    user = get_user(session["username"])
+    if user is None or len(user) == 0: # how even
+        return redirect(url_for("logout"))
+    uuid = user[0]["uuid"]
+    
+    like_post(uuid, pid)
+    return redirect(url_for("view_profile", user_id=op, _anchor=f"post-{pid}"))
 
 if __name__ == "__main__":
     app.run(debug=True)

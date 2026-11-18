@@ -110,3 +110,6 @@ efratH -- 2026-11-16
 
 leonW - 2026-11-17
 	Finished style.css, minorly modified html files for aesthetics
+
+marcosL -- 2026-11-17 23:15
+	Made search more lenient. All usernames that contain the query as a substring will show up.

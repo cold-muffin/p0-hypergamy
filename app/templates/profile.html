@@ -27,11 +27,14 @@
                 <p class="post-status unpublished">Unpublished</p>
             {% endif %}
 
-            <form action="{{ url_for('like_post', pid=post.pid, uuid=user.uuid) }}" method="post">
-                <button type="submit" class="icon-button">
-                    <img src="/static/empty_like.svg" class="icon-small">
-                </button>
-            </form>
+            <div class="like-pair">
+                <form action="{{ url_for('toggle_like', pid=post.pid, op=user.uuid) }}" method="post">
+                    <button type="submit" class="icon-button">
+                        <img src="/static/empty_like.svg" class="icon-small">
+                    </button>
+                </form>
+                <p>{{ post.likes }}</p>
+            </div>
 
             {% if is_owner %}
                 <a class="button post-action"
