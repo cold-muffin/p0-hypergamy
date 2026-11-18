@@ -366,3 +366,8 @@ button:hover, .button:hover {
     align-items: center;
     justify-content: center;
 }
+
+.like-pair {
+    display: flex;
+    align-items: center;
+}

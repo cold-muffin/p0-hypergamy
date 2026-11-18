@@ -37,12 +37,17 @@ def like_post(uuid: int, pid: int):
         c.execute(f"DELETE FROM user_likes WHERE uuid = {uuid} AND pid = {pid};")
         r = 0
     else:
-        c.execute(f"INSERT INTO user_likes (uuid, pid) VALUES (1, 22)")
+        c.execute(f"INSERT INTO user_likes (uuid, pid) VALUES ({uuid}, {pid})")
         r = 1
     db.commit()
     db.close()
     return r
-    
+
+def count_likes(pid: int):
+    db = sqlite3.connect(dbpath)
+    c = db.cursor()
+    c.execute(f"SELECT COUNT(*) FROM user_likes WHERE pid = {pid}")
+    return c.fetchone()[0]
 
 def __turn_cursor_into_list(table:str, c):
     header = ["uuid", "username", "password"] if table == "users" else ['pid', 'owner', 'title', 'contents', 'published']
@@ -141,6 +146,6 @@ which -- "users" or "blog_posts"."""
 
 if __name__ == '__main__':
     print(like_post(1, 22))
-    print(like_post(1, 22))
-    print(like_post(1, 22))
-    print(like_post(1, 22))
+    print(like_post(2, 22))
+    print(like_post(3, 22))
+    print(count_likes(22))
