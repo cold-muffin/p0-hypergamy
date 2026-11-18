@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
-<body class="standalone-page narrow">
+<body class="standalone-page">
   {% include "navbar.html" %}
   <br>
   <h1>
@@ -22,7 +22,7 @@
     <form action="/auth" method="post">
       <p>
       <label for="username">Username:</label>
-      <input type="text" id="username" name="username" value="{{ username|default('', true) }}"placeholder="Username" required>
+      <input type="text" id="username" name="username" placeholder="Username" required>
       </p>
 
       <p>

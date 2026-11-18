@@ -153,16 +153,13 @@ def publish_edit():
     # contents parsing
     contents = request.form.get("contents")
 
-    # published parsing
-    published = request.form.get("published")
-    published = False if published is None else bool(int(published))
-
     # action parsing
     action = request.form.get("action")
+    publish = action == "publish"
     if action is None:
         return redirect(url_for("profile", error="EARLYEXIT"))
 
-    edit_blog(pid, title, contents, published)
+    edit_blog(pid, title, contents, publish)
     # saving does not redirect you towards a different page
     post = get_blog_by_pid(pid)
     if action == "save":
@@ -186,16 +183,14 @@ def publish_post():
     # contents parsing
     contents = request.form.get("contents")
 
-    # published parsing
-    published = request.form.get("published")
-    published = False if published is None else bool(int(published))
-
     # action parsing
     action = request.form.get("action")
+    publish = action == "publish"
+
     if action is None:
         return redirect(url_for("profile", error="EARLYEXIT"))
 
-    add_blog(uuid, title, contents, published)
+    add_blog(uuid, title, contents, publish)
 
     print(request.form)
     return redirect(url_for("profile"))

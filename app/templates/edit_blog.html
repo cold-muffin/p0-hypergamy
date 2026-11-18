@@ -23,15 +23,10 @@
                 <label for="contents">Contents:</label><br>
                 <textarea id="contents" name="contents" rows="10" cols="50" maxlength="4096" required> {{ post['contents'] }}</textarea>
             </p>
-            <p class="checkbox-row">
-                <input type="checkbox" id="published" name="published" value="1">
-                <label for="published">
-                    Publish this post
-                </label>
-            </p>
-            <p class="intro">Leave unchecked to save as a draft.</p>
+            
             <p class="actions">
-                <button type="submit" name="action" value="save_exit">Save and Exit</button>
+                <button type="submit" name="action" value="save">Save as draft</button>
+                <button type="submit" name="action" value="publish">Publish and exit</button>
                 <a href="/profiles/{{ user['uuid'] }}">Cancel</a>
             </p>
         </form>
