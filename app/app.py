@@ -189,6 +189,11 @@ def publish_post():
     print(request.form)
     return redirect(url_for("profile"))
 
+@app.route("/toggle_like", methods=["GET", "POST"])
+def like_post():
+    pid = request.args.get("pid")
+    uuid = request.args.get("uuid")
+    return redirect(url_for("view_profile", user_id=uuid, _anchor=f"post-{pid}"))
 
 if __name__ == "__main__":
     app.run(debug=True)

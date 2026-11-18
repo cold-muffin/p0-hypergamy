@@ -17,19 +17,27 @@
     <h2>Blog Posts</h2>
 
     {% for post in posts %}
-        <h3 class="post-title">{{ post.title }}</h3>
-        <p class="post-text">{{ post.contents }}</p>
+        <div id="post-{{ post.pid }}">
+            <h3 class="post-title">{{ post.title }}</h3>
+            <p class="post-text">{{ post.contents }}</p>
 
-        {% if post.published %}
-            <p class="post-status">Published</p>
-        {% else %}
-            <p class="post-status unpublished">Unpublished</p>
-        {% endif %}
+            {% if post.published %}
+                <p class="post-status">Published</p>
+            {% else %}
+                <p class="post-status unpublished">Unpublished</p>
+            {% endif %}
 
-        {% if is_owner %}
-            <a class="button post-action"
-                href="/profiles/{{ user.uuid }}/edit/{{ post.pid }}">Edit Post</a>
-        {% endif %}
+            <form action="{{ url_for('like_post', pid=post.pid, uuid=user.uuid) }}" method="post">
+                <button type="submit" class="icon-button">
+                    <img src="/static/empty_like.svg" class="icon-small">
+                </button>
+            </form>
+
+            {% if is_owner %}
+                <a class="button post-action"
+                    href="/profiles/{{ user.uuid }}/edit/{{ post.pid }}">Edit Post</a>
+            {% endif %}
+        </div>
 
         <hr>
     {% else %}
