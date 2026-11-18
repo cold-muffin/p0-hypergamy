@@ -10,6 +10,7 @@
     box-sizing: border-box;
 }
 
+
 /* Default page */
 body {
     margin: 0;
@@ -35,10 +36,6 @@ h2 {font-size: 1.4rem;}
 h3 {font-size: 1.2rem;}
 
 /* Forms and buttons */
-label {
-    font-weight: 650;
-}
-
 input:not([type="checkbox"]), textarea {
     width: 100%;
     padding: 0.65rem 0.75rem;
@@ -74,14 +71,11 @@ button:hover, .button:hover {
     background: #004d82;
 }
 
-.actions, .section-heading {
+.actions {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 0.75rem;
-}
-
-.actions, .form-footer {
     margin-top: 1.25rem;
 }
 
@@ -116,6 +110,7 @@ button {
     margin-top: 0;
 }
 
+/* hyperlinks */
 a {
     color: #8fd4ff;
 }
@@ -143,38 +138,29 @@ a {
     font-weight: 700;
 }
 
+/* little line things separating blog posts*/
 .profile-page hr {
     border: 0;
     border-top: 1px solid #30435a;
     margin: 1rem 0;
 }
 
+/* preservation of spaces and line breaks*/
 .post-text {
     white-space: pre-wrap;
 }
 
 .post-status {
-    color: #176344;
+    color: #a8e1bf;
     font-size: 0.85rem;
     font-weight: 700;
 }
 
 .unpublished {
-    color: #9b2033;
-}
-
-.profile-page .post-status {
-    color: #a8e1bf;
-}
-
-.profile-page .unpublished {
     color: #ff9aab;
 }
 
-.post-action {
-    display: inline-block;
-    margin-top: 0.25rem;
-}
+/* Like button */
 
 .icon-button img {
     width: 1.5rem;
@@ -192,6 +178,8 @@ a {
     display: flex;
     align-items: center;
 }
+
+/*Navbar stuff*/
 
 nav {
     display: flex;
@@ -212,6 +200,7 @@ nav a {
     border-radius: 4px;
 }
 
+/* when hovering over navbar */
 nav a:hover {
     background: #004575;
 }
