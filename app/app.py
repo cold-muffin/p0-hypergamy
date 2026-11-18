@@ -70,6 +70,9 @@ def profile():
     users = get_user(username)
     if not users:
         return redirect("/login")
+    #Navbar HTML to redirect to create post page
+    if request.args.get("action") == "create":
+        return redirect(url_for("create_post", user_id=users[0]["uuid"]))
 
     return redirect("/profiles/" + str(users[0]["uuid"]))
 
@@ -157,6 +160,11 @@ def publish_edit():
         return redirect(url_for("profile", error="EARLYEXIT"))
 
     edit_blog(pid, title, contents, published)
+    # saving does not redirect you towards a different page
+    post = get_blog_by_pid(pid)
+    if action == "save":
+        return redirect(url_for("edit_post", user_id=post["owner"], pid=pid))
+
     return redirect(url_for("profile"))
 
 @app.route("/publish_post", methods=["GET", "POST"])
